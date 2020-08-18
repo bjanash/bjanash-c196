@@ -11,4 +11,5 @@
     <string name="see_list_of_courses">See List of Courses</string>
     <string name="see_list_of_assessments">See List of Assessments</string>
     <string name="SingleTerm">SingleTerm</string>
+    <string name="termDetails">Details</string>
 </resources>

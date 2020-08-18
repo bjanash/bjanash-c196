@@ -7,4 +7,8 @@
     <string name="title_activity_detailed_term_view">detailed_term_view</string>
     <string name="title_activity_detailed_course_view">detailed_course_view</string>
     <string name="title_activity_detailed_assessment_view">detailed_assessment_view</string>
+    <string name="see_list_of_terms">See List of Terms</string>
+    <string name="see_list_of_courses">See List of Courses</string>
+    <string name="see_list_of_assessments">See List of Assessments</string>
+    <string name="SingleTerm">SingleTerm</string>
 </resources>

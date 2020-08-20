@@ -22,6 +22,11 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res/layout/term', 'src/main/res/layout/course', 'src/main/res/assessment', 'src/main/res/layout/note']
+        }
+    }
 }
 
 dependencies {

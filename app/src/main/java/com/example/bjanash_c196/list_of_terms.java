@@ -19,6 +19,7 @@ public class list_of_terms extends AppCompatActivity {
 
     @BindView(R.id.terms_recyclerView)
     RecyclerView mtermsRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

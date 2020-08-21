@@ -13,4 +13,9 @@
     <string name="SingleTerm">SingleTerm</string>
     <string name="termDetails">Details</string>
     <string name="title_activity_term_editor">term_editor</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="term_end">Term End</string>
+    <string name="term_start">Term Start</string>
+    <string name="term_title">Term Title</string>
 </resources>

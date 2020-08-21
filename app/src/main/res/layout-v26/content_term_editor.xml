@@ -10,39 +10,44 @@
 
     <EditText
         android:id="@+id/TermTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:autofillHints="Enter Term Title"
+        android:inputType="text"
         android:text="@string/term_title"
         app:layout_constraintBottom_toTopOf="@+id/TermStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:inputType="text"
-        android:autofillHints="Enter Term Title" />
+        tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/TermStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
         android:layout_marginTop="64dp"
         android:text="@string/term_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TermTitle"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:autofillHints="Enter Term Start Date"
+        tools:ignore="LabelFor"/>
 
     <EditText
         android:id="@+id/TermEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
         android:layout_marginTop="60dp"
         android:text="@string/term_end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TermStart"
-        android:inputType="text" />
+        android:inputType="text"
+        android:autofillHints="Enter Term End Date"
+        tools:ignore="LabelFor"/>
 
     <Button
         android:id="@+id/SAVE"

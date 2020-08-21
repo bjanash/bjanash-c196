@@ -37,7 +37,7 @@ public class list_of_terms extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        initTermsRecyclerView();
+        //initTermsRecyclerView();
     }
 
     private void initTermsRecyclerView(){

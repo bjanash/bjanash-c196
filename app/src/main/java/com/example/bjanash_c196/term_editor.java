@@ -7,27 +7,17 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class list_of_terms extends AppCompatActivity {
-
-    @BindView(R.id.terms_recyclerView)
-    RecyclerView mtermsRecyclerView;
+public class term_editor extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_terms);
+        setContentView(R.layout.activity_term_editor);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        ButterKnife.bind(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -37,13 +27,6 @@ public class list_of_terms extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        initTermsRecyclerView();
-    }
-
-    private void initTermsRecyclerView(){
-        mtermsRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mtermsRecyclerView.setLayoutManager(layoutManager);
     }
 
 }

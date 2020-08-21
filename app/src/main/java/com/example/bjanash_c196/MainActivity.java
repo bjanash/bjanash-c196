@@ -17,9 +17,9 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button list_of_terms_button = (Button) findViewById(R.id.list_of_terms_button);
-    Button list_of_courses_button = (Button) findViewById(R.id.list_of_courses_button);
-    Button list_of_assessments_button = (Button) findViewById(R.id.list_of_assessments_button);
+  //  Button list_of_terms_button = (Button) findViewById(R.id.list_of_terms_button);
+    //Button list_of_courses_button = (Button) findViewById(R.id.list_of_courses_button);
+    //Button list_of_assessments_button = (Button) findViewById(R.id.list_of_assessments_button);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

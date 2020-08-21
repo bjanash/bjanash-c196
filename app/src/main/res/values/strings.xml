@@ -12,4 +12,5 @@
     <string name="see_list_of_assessments">See List of Assessments</string>
     <string name="SingleTerm">SingleTerm</string>
     <string name="termDetails">Details</string>
+    <string name="title_activity_term_editor">term_editor</string>
 </resources>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".course_editor"
+    tools:showIn="@layout/activity_course_editor">
+
+    <EditText
+        android:id="@+id/CourseTitle"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:autofillHints="Enter Course Title"
+        android:inputType="text"
+        android:text="@string/course_title"
+        app:layout_constraintBottom_toTopOf="@+id/CourseStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor" />
+
+    <EditText
+    android:id="@+id/CourseStart"
+    android:layout_width="321dp"
+    android:layout_height="49dp"
+    android:layout_marginTop="20dp"
+    android:text="@string/course_start"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/CourseTitle"
+    android:inputType="text"
+    android:autofillHints="Enter Course Start Date"
+    tools:ignore="LabelFor"/>
+
+    <EditText
+        android:id="@+id/CourseEnd"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/course_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CourseStart"
+        android:inputType="text"
+        android:autofillHints="Enter Course End Date"
+        tools:ignore="LabelFor"/>
+
+    <EditText
+        android:id="@+id/CourseStatus"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/course_status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CourseEnd"
+        android:inputType="text"
+        android:autofillHints="Enter Course Status"
+        tools:ignore="LabelFor"/>
+
+    <EditText
+        android:id="@+id/MentorName"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/mentor_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CourseStatus"
+        android:inputType="text"
+        android:autofillHints="Enter Course Mentor Name"
+        tools:ignore="LabelFor"/>
+
+    <EditText
+        android:id="@+id/PhoneNumber"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/phone_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MentorName"
+        android:inputType="text"
+        android:autofillHints="Enter Phone Number"
+        tools:ignore="LabelFor,TextFields"/>
+
+    <EditText
+        android:id="@+id/EmailAddress"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/email_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber"
+        android:inputType="text"
+        android:autofillHints="Enter Email Address"
+        tools:ignore="LabelFor,TextFields"/>
+
+    <Button
+        android:id="@+id/SAVE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
+
+    <Button
+        android:id="@+id/CANCEL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SAVE"
+        app:layout_constraintVertical_bias="0.275" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

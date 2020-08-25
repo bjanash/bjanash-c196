@@ -5,46 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".term_editor"
-    tools:showIn="@layout/activity_term_editor">
+    tools:context=".course_editor"
+    tools:showIn="@layout/activity_course_editor">
 
     <EditText
-        android:id="@+id/TermTitle"
+        android:id="@+id/CourseTitle"
         android:layout_width="321dp"
         android:layout_height="49dp"
-        android:autofillHints="Enter Term Title"
+        android:autofillHints="Enter Course Title"
         android:inputType="text"
-        android:text="@string/term_title"
-        app:layout_constraintBottom_toTopOf="@+id/TermStart"
+        android:text="Course Title"
+        app:layout_constraintBottom_toTopOf="@+id/CourseStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor" />
 
     <EditText
-        android:id="@+id/TermStart"
+        android:id="@+id/CourseStart"
         android:layout_width="321dp"
         android:layout_height="49dp"
         android:layout_marginTop="64dp"
-        android:text="@string/term_start"
+        android:text="Course Start"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TermTitle"
+        app:layout_constraintTop_toBottomOf="@+id/CourseTitle"
         android:inputType="text"
-        android:autofillHints="Enter Term Start Date"
+        android:autofillHints="Enter Course Start Date"
         tools:ignore="LabelFor"/>
 
     <EditText
-        android:id="@+id/TermEnd"
+        android:id="@+id/CourseEnd"
         android:layout_width="321dp"
         android:layout_height="49dp"
         android:layout_marginTop="60dp"
-        android:text="@string/term_end"
+        android:text="Course End"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TermStart"
+        app:layout_constraintTop_toBottomOf="@+id/CourseStart"
         android:inputType="text"
-        android:autofillHints="Enter Term End Date"
+        android:autofillHints="Enter Course End Date"
         tools:ignore="LabelFor"/>
 
     <Button
@@ -54,6 +56,7 @@
         android:layout_marginTop="72dp"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TermEnd" />
 
@@ -64,7 +67,9 @@
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SAVE"
         app:layout_constraintVertical_bias="0.275" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ public class detailed_term_view extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab_addCourse);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

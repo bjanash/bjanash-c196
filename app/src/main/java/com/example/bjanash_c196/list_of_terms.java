@@ -29,7 +29,7 @@ public class list_of_terms extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab_addTerm);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

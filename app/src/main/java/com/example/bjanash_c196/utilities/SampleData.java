@@ -98,7 +98,7 @@ public class SampleData {
     private static final String SAMPLE_ASSESSMENT_TYPE_3 = "OBJECTIVE";
     private static final String SAMPLE_ASSESSMENT_TYPE_4 = "PERFORMANCE";
 
-    public static List<AssessmentEntity> getAsessments() {
+    public static List<AssessmentEntity> getAssessments() {
         List<AssessmentEntity> assessments = new ArrayList<>();
         assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE, getDate(0), SAMPLE_ASSESSMENT_TYPE));
         assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_2, getDate(1), SAMPLE_ASSESSMENT_TYPE_2));

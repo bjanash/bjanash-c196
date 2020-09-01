@@ -1,7 +1,14 @@
 package com.example.bjanash_c196;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.bjanash_c196.model.AssessmentEntity;
+import com.example.bjanash_c196.model.CourseEntity;
+import com.example.bjanash_c196.model.NoteEntity;
+import com.example.bjanash_c196.model.TermEntity;
+import com.example.bjanash_c196.ui.TermsAdapter;
+import com.example.bjanash_c196.utilities.SampleData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -10,15 +17,34 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class list_of_terms extends AppCompatActivity {
 
     @BindView(R.id.terms_recyclerView)
     RecyclerView mtermsRecyclerView;
+
+    @OnClick(R.id.fab_addTerm)
+    void fabClickHandler() {
+        Intent intent = new Intent(this, term_editor.class);
+        startActivity(intent);
+    }
+
+    private List<TermEntity> termsData = new ArrayList<>();
+    private List<CourseEntity> coursesData = new ArrayList<>();
+    private List<NoteEntity> notesData = new ArrayList<>();
+    private List<AssessmentEntity> assessmentsData = new ArrayList<>();
+
+
+    private TermsAdapter mTermAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +55,43 @@ public class list_of_terms extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        FloatingActionButton fab = findViewById(R.id.fab_addTerm);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        //initTermsRecyclerView();
+
+
+        //sample data for terms
+        termsData.addAll(SampleData.getTerms());
+        for(TermEntity term : termsData) {
+            Log.i("termLog", term.toString());
+        }
+        //sample data for courses
+        coursesData.addAll(SampleData.getCourses());
+        for(CourseEntity course : coursesData) {
+            Log.i("courseLog", course.toString());
+
+        }
+
+        //sample data for notes
+        notesData.addAll(SampleData.getNotes());
+        for(NoteEntity note : notesData) {
+            Log.i("noteLog", note.toString());
+
+        }
+
+        //sample data for assessments
+        assessmentsData.addAll(SampleData.getAssessments());
+        for(AssessmentEntity assessment : assessmentsData) {
+            Log.i("assessmentLog", assessment.toString());
+
+        }
+        initTermsRecyclerView();
     }
 
     private void initTermsRecyclerView(){
         mtermsRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mtermsRecyclerView.setLayoutManager(layoutManager);
+
+        mTermAdapter = new TermsAdapter(termsData, this);
+        mtermsRecyclerView.setAdapter(mTermAdapter);
     }
 
 }

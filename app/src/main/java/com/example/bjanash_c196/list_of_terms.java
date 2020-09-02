@@ -3,14 +3,12 @@ package com.example.bjanash_c196;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.bjanash_c196.model.AssessmentEntity;
-import com.example.bjanash_c196.model.CourseEntity;
-import com.example.bjanash_c196.model.NoteEntity;
-import com.example.bjanash_c196.model.TermEntity;
+import com.example.bjanash_c196.database.AssessmentEntity;
+import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.NoteEntity;
+import com.example.bjanash_c196.database.TermEntity;
 import com.example.bjanash_c196.ui.TermsAdapter;
 import com.example.bjanash_c196.utilities.SampleData;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.example.bjanash_c196.utilities;
 
-import com.example.bjanash_c196.model.AssessmentEntity;
-import com.example.bjanash_c196.model.CourseEntity;
-import com.example.bjanash_c196.model.NoteEntity;
-import com.example.bjanash_c196.model.TermEntity;
+import com.example.bjanash_c196.database.AssessmentEntity;
+import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.NoteEntity;
+import com.example.bjanash_c196.database.TermEntity;
 
 import java.util.ArrayList;
 import java.util.Calendar;

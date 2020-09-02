@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bjanash_c196.R;
-import com.example.bjanash_c196.model.NoteEntity;
-import com.example.bjanash_c196.model.TermEntity;
+import com.example.bjanash_c196.database.NoteEntity;
 
 import java.util.List;
 

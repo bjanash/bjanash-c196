@@ -1,17 +1,13 @@
 package com.example.bjanash_c196;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.bjanash_c196.model.AssessmentEntity;
-import com.example.bjanash_c196.model.CourseEntity;
-import com.example.bjanash_c196.model.NoteEntity;
-import com.example.bjanash_c196.model.TermEntity;
-import com.example.bjanash_c196.ui.TermsAdapter;
+import com.example.bjanash_c196.database.AssessmentEntity;
+import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.NoteEntity;
+import com.example.bjanash_c196.database.TermEntity;
 import com.example.bjanash_c196.utilities.SampleData;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -54,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*Go to List of Courses Screen
+        //Go to List of Courses Screen
         Button courses = (Button) findViewById(R.id.list_of_courses_button);
-        terms.setOnClickListener(new View.OnClickListener() {
+        courses.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), list_of_courses.class);
                 startActivityForResult(myIntent, 0);
@@ -65,12 +61,21 @@ public class MainActivity extends AppCompatActivity {
 
         //Go to List of Assessments Screen
         Button assessments = (Button) findViewById(R.id.list_of_assessments_button);
-        terms.setOnClickListener(new View.OnClickListener() {
+        assessments.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), list_of_assessments.class);
                 startActivityForResult(myIntent, 0);
             }
-        }); */
+        });
+
+        //Go to List of Notes Screen
+        Button notes = (Button) findViewById(R.id.list_of_notes_button);
+        notes.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), list_of_notes.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
 
         //sample data for terms
         termsData.addAll(SampleData.getTerms());

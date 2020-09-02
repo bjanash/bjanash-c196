@@ -1,8 +1,14 @@
-package com.example.bjanash_c196.model;
+package com.example.bjanash_c196.database;
+
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
+@Entity(tableName = "courses")
 public class CourseEntity {
+    @PrimaryKey
     private String courseTitle;
     private Date courseStart;
     private Date courseEnd;
@@ -21,6 +27,7 @@ public class CourseEntity {
         this.emailAddress = emailAddress;
     }
 
+    @Ignore
     public CourseEntity() {
     }
 

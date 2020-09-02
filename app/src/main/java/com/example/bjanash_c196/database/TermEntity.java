@@ -1,8 +1,14 @@
-package com.example.bjanash_c196.model;
+package com.example.bjanash_c196.database;
+
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
+@Entity(tableName = "terms")
 public class TermEntity {
+    @PrimaryKey
     private String termTitle;
     private Date termStartDate;
     private Date termEndDate;
@@ -13,6 +19,7 @@ public class TermEntity {
         this.termEndDate = termEndDate;
     }
 
+    @Ignore
     public TermEntity() {
     }
 

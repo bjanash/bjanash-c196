@@ -1,6 +1,12 @@
-package com.example.bjanash_c196.model;
+package com.example.bjanash_c196.database;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "notes")
 public class NoteEntity {
+    @PrimaryKey
     private String noteTitle;
     private String noteContent;
 
@@ -9,6 +15,7 @@ public class NoteEntity {
         this.noteContent = noteContent;
     }
 
+    @Ignore
     public NoteEntity() {
     }
 

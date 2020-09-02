@@ -1,8 +1,14 @@
-package com.example.bjanash_c196.model;
+package com.example.bjanash_c196.database;
+
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
+@Entity(tableName = "assessments")
 public class AssessmentEntity {
+    @PrimaryKey
     private String assessmentTitle;
     private Date assessmentDueDate;
     private String assessmentType;
@@ -13,6 +19,7 @@ public class AssessmentEntity {
         this.assessmentType = assessmentType;
     }
 
+    @Ignore
     public AssessmentEntity() {
     }
 

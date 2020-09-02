@@ -45,4 +45,6 @@
     <string name="note_title">Note Title</string>
     <string name="note_content">Note Content</string>
     <string name="title_activity_detailed_note_view">detailed_note_view</string>
+    <string name="see_list_of_notes">See List of Notes</string>
+    <string name="title_activity_list_of_notes_2">list_of_notes_2</string>
 </resources>

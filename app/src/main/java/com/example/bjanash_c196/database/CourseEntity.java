@@ -1,5 +1,6 @@
 package com.example.bjanash_c196.database;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -8,7 +9,7 @@ import java.util.Date;
 
 @Entity(tableName = "courses")
 public class CourseEntity {
-    @PrimaryKey
+    @PrimaryKey @NonNull
     private String courseTitle;
     private Date courseStart;
     private Date courseEnd;

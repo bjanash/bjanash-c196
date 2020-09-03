@@ -1,12 +1,13 @@
 package com.example.bjanash_c196.database;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "notes")
 public class NoteEntity {
-    @PrimaryKey
+    @PrimaryKey @NonNull
     private String noteTitle;
     private String noteContent;
 

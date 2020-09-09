@@ -2,12 +2,15 @@ package com.example.bjanash_c196;
 
 import android.os.Bundle;
 
+import com.example.bjanash_c196.ViewModel.AssessmentViewModel;
+import com.example.bjanash_c196.ViewModel.NoteViewModel;
 import com.example.bjanash_c196.database.NoteEntity;
 import com.example.bjanash_c196.ui.NotesAdapter;
 import com.example.bjanash_c196.utilities.SampleData;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +30,7 @@ public class list_of_notes extends AppCompatActivity {
     private List<NoteEntity> notesData = new ArrayList<>();
 
     private NotesAdapter mNoteAdapter;
+    private NoteViewModel mNoteViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +42,18 @@ public class list_of_notes extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //sample data for notes
-        notesData.addAll(SampleData.getNotes());
+        notesData.addAll(mNoteViewModel.mNotes);
         for(NoteEntity note : notesData) {
             Log.i("noteLog", note.toString());
 
         }
         initTermsRecyclerView();
+        initNoteViewModel();
 
+    }
+
+    private void initNoteViewModel() {
+        mNoteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
     }
 
     private void initTermsRecyclerView(){

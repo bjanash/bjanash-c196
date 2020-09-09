@@ -23,10 +23,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<TermEntity> termsData = new ArrayList<>();
-    private List<CourseEntity> coursesData = new ArrayList<>();
-    private List<NoteEntity> notesData = new ArrayList<>();
-    private List<AssessmentEntity> assessmentsData = new ArrayList<>();
+    //private List<TermEntity> termsData = new ArrayList<>();
+    //private List<CourseEntity> coursesData = new ArrayList<>();
+    //private List<NoteEntity> notesData = new ArrayList<>();
+    //private List<AssessmentEntity> assessmentsData = new ArrayList<>();
 
 
 
@@ -77,32 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //sample data for terms
-        termsData.addAll(SampleData.getTerms());
-        for(TermEntity term : termsData) {
-            Log.i("termLog", term.toString());
-        }
-        //sample data for courses
-        coursesData.addAll(SampleData.getCourses());
-        for(CourseEntity course : coursesData) {
-            Log.i("courseLog", course.toString());
-
-        }
-
-        //sample data for notes
-        notesData.addAll(SampleData.getNotes());
-        for(NoteEntity note : notesData) {
-            Log.i("noteLog", note.toString());
-
-        }
-
-        //sample data for assessments
-        assessmentsData.addAll(SampleData.getAssessments());
-        for(AssessmentEntity assessment : assessmentsData) {
-            Log.i("assessmentLog", assessment.toString());
-
-        }
-
     }
 
 
@@ -121,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_sample_data) {
             return true;
         }
 

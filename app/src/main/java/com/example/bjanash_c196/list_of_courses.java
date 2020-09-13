@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import com.example.bjanash_c196.ViewModel.AssessmentViewModel;
 import com.example.bjanash_c196.ViewModel.CourseViewModel;
+import com.example.bjanash_c196.database.AssessmentEntity;
 import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.ui.AssessmentsAdapter;
 import com.example.bjanash_c196.ui.CoursesAdapter;
 import com.example.bjanash_c196.utilities.SampleData;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,28 +43,41 @@ public class list_of_courses extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
-
-        //sample data for courses
-        coursesData.addAll(mCourseViewModel.mCourses);
-        for(CourseEntity course : coursesData) {
-            Log.i("courseLog", course.toString());
-        }
-        initTermsRecyclerView();
+        initCourseRecyclerView();
         initCourseViewModel();
 
     }
 
-    private void initCourseViewModel() {
-        mCourseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
-    }
-
-    private void initTermsRecyclerView(){
+    private void initCourseRecyclerView(){
         mcoursesRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mcoursesRecyclerView.setLayoutManager(layoutManager);
+    }
 
+    private void initCourseViewModel() {
+        final Observer<List<CourseEntity>> coursesObserver = new Observer<List<CourseEntity>>() {
+            @Override
+            public void onChanged(List<CourseEntity> courseEntities) {
+                coursesData.clear();
+                coursesData.addAll(courseEntities);
+
+                if(mCourseAdapter == null){
+                    mCourseAdapter = new CoursesAdapter(coursesData, list_of_courses.this);
+                    mcoursesRecyclerView.setAdapter(mCourseAdapter);
+                } else{
+                    mCourseAdapter.notifyDataSetChanged();
+                }
+            }
+        };
         mCourseAdapter = new CoursesAdapter(coursesData, this);
         mcoursesRecyclerView.setAdapter(mCourseAdapter);
+    }
+
+    private void addSampleCoursesData() {
+        mCourseViewModel.addSampleCoursesData();
+    }
+    private void deleteAllCourses() {
+        mCourseViewModel.deleteAllCourses();
     }
 
 }

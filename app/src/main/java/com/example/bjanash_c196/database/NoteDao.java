@@ -25,7 +25,7 @@ public interface NoteDao {
     NoteEntity getNotebyTitle(String noteTitle);
 
     @Query("SELECT * FROM notes ORDER BY noteTitle DESC")
-    LiveData<List<NoteEntity>> getAll();
+    LiveData<List<NoteEntity>> getAllNotes();
 
     @Query("DELETE FROM notes")
     void deleteAll();

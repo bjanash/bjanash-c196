@@ -12,10 +12,10 @@ import java.util.concurrent.Executors;
 
 public class AppRepository {
     private static  AppRepository ourInstance;
-    public List<AssessmentEntity> mAssessments;
-    public List<CourseEntity> mCourses;
+    public LiveData<List<AssessmentEntity>> mAssessments;
+    public LiveData<List<CourseEntity>> mCourses;
     public LiveData<List<TermEntity>> mTerms ;
-    public List<NoteEntity> mNotes;
+    public LiveData<List<NoteEntity>> mNotes;
 
     private AppDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
@@ -30,12 +30,11 @@ public class AppRepository {
     private AppRepository(Context context) {
         mDb = AppDatabase.getInstance(context);
         mTerms = getAllTerms();
-        mAssessments = SampleData.getAssessments();
-        mCourses = SampleData.getCourses();
-        mNotes = SampleData.getNotes();
+        mAssessments = getAllAssessments();
+        mCourses = getAllCourses();
+        mNotes = getAllNotes();
 
     }
-
 
 
    public void addSampleTermsData() {
@@ -47,7 +46,79 @@ public class AppRepository {
         });
     }
 
+    public void addSampleAssessmentsData() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.assessmentDao().insertAll(SampleData.getAssessments());
+            }
+        });
+    }
+
+    public void addSampleNotesData() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.noteDao().insertAll(SampleData.getNotes());
+            }
+        });
+    }
+
+    public void addSampleCoursesData() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.courseDao().insertAll(SampleData.getCourses());
+            }
+        });
+    }
+
     private LiveData<List<TermEntity>> getAllTerms(){
         return mDb.termDao().getAllTerms();
+    }
+    private LiveData<List<NoteEntity>> getAllNotes(){
+        return mDb.noteDao().getAllNotes();
+    }
+    private LiveData<List<CourseEntity>> getAllCourses(){
+        return mDb.courseDao().getAllCourses();
+    }
+    private LiveData<List<AssessmentEntity>> getAllAssessments(){
+        return mDb.assessmentDao().getAllAssessments();
+    }
+
+    public void deleteAllTerms() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDao().deleteAll();
+            }
+        });
+    }
+
+    public void deleteAllNotes() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.noteDao().deleteAll();
+            }
+        });
+    }
+
+    public void deleteAllAssessments() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.assessmentDao().deleteAll();
+            }
+        });
+    }
+
+    public void deleteAllCourses() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.courseDao().deleteAll();
+            }
+        });
     }
 }

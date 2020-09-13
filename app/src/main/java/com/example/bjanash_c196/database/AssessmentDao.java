@@ -25,7 +25,7 @@ public interface AssessmentDao {
     AssessmentEntity getAssessmentbyTitle(String assessmentTitle);
 
     @Query("SELECT * FROM assessments ORDER BY assessmentDueDate DESC")
-    LiveData<List<AssessmentEntity>> getAll();
+    LiveData<List<AssessmentEntity>> getAllAssessments();
 
     @Query("DELETE FROM assessments")
     void deleteAll();

@@ -34,12 +34,12 @@ import butterknife.OnClick;
 
 public class list_of_terms extends AppCompatActivity {
 
-    private List<TermEntity> termsData = new ArrayList<>();
-    private TermsAdapter mTermAdapter;
-
     @BindView(R.id.terms_recyclerView)
     RecyclerView mtermsRecyclerView;
     private TermViewModel mTermViewModel;
+
+    private List<TermEntity> termsData = new ArrayList<>();
+    private TermsAdapter mTermAdapter;
 
     @OnClick(R.id.fab_addTerm)
     void fabClickHandler() {
@@ -57,8 +57,6 @@ public class list_of_terms extends AppCompatActivity {
         ButterKnife.bind(this);
         initTermViewModel();
         initTermsRecyclerView();
-
-
     }
 
 
@@ -108,9 +106,16 @@ public class list_of_terms extends AppCompatActivity {
         if (id == R.id.action_add_sample_data) {
             addSampleTermsData();
             return true;
+        } else if(id == R.id.action_delete_all){
+            deleteAllTerms();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllTerms() {
+        mTermViewModel.deleteAllTerms();
     }
 
     private void addSampleTermsData() {

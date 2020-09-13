@@ -27,4 +27,8 @@ public class TermViewModel extends AndroidViewModel {
     }
 
     public void addSampleTermsData() { mRepository.addSampleTermsData(); }
+
+    public void deleteAllTerms() {
+        mRepository.deleteAllTerms();
+    }
 }

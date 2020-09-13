@@ -25,7 +25,7 @@ public interface CourseDao {
     CourseEntity getCoursebyTitle(String courseTitle);
 
     @Query("SELECT * FROM courses ORDER BY courseStart DESC")
-    LiveData<List<CourseEntity>> getAll();
+    LiveData<List<CourseEntity>> getAllCourses();
 
     @Query("DELETE FROM courses")
     void deleteAll();

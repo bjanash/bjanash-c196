@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.example.bjanash_c196.database.AppRepository;
 import com.example.bjanash_c196.database.AssessmentEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class CourseViewModel extends AndroidViewModel {
 
-    public List<CourseEntity> mCourses;
+    public LiveData<List<CourseEntity>> mCourses;
     private AppRepository mRepository;
 
     public CourseViewModel(@NonNull Application application) {
@@ -22,5 +23,9 @@ public class CourseViewModel extends AndroidViewModel {
 
         mRepository = AppRepository.getInstance(application.getApplicationContext());
         mCourses = mRepository.mCourses;
+    }
+    public void addSampleCoursesData() { mRepository.addSampleCoursesData(); }
+    public void deleteAllCourses() {
+        mRepository.deleteAllCourses();
     }
 }

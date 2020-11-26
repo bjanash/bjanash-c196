@@ -11,14 +11,14 @@ import java.util.Date;
 public class CourseEntity {
     @PrimaryKey @NonNull
     private String courseTitle;
-    private Date courseStart;
-    private Date courseEnd;
+    private String courseStart;
+    private String courseEnd;
     private String courseStatus;
     private String mentorName;
     private int phoneNumber;
     private String emailAddress;
 
-    public CourseEntity(String courseTitle, Date courseStart, Date courseEnd, String courseStatus, String mentorName, int phoneNumber, String emailAddress) {
+    public CourseEntity(String courseTitle, String courseStart, String courseEnd, String courseStatus, String mentorName, int phoneNumber, String emailAddress) {
         this.courseTitle = courseTitle;
         this.courseStart = courseStart;
         this.courseEnd = courseEnd;
@@ -40,19 +40,19 @@ public class CourseEntity {
         this.courseTitle = courseTitle;
     }
 
-    public Date getCourseStart() {
+    public String getCourseStart() {
         return courseStart;
     }
 
-    public void setCourseStart(Date courseStart) {
+    public void setCourseStart(String courseStart) {
         this.courseStart = courseStart;
     }
 
-    public Date getCourseEnd() {
+    public String getCourseEnd() {
         return courseEnd;
     }
 
-    public void setCourseEnd(Date courseEnd) {
+    public void setCourseEnd(String courseEnd) {
         this.courseEnd = courseEnd;
     }
 

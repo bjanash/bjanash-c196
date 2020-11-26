@@ -20,12 +20,16 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.bjanash_c196.utilities.Constants.COURSE_TITLE_ID;
+import static com.example.bjanash_c196.utilities.Constants.NOTE_TITLE_ID;
+
 public class course_editor extends AppCompatActivity {
 
     @BindView(R.id.CourseTitle)
     TextView mCourseTitle;
 
     private CourseEditorViewModel mCourseViewModel;
+    private boolean mNewCourse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,15 @@ public class course_editor extends AppCompatActivity {
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle("New Course");
+            mNewCourse = true;
+        } else {
+            setTitle("Edit Course");
+            String courseId = (String) extras.get(COURSE_TITLE_ID);
+            mCourseViewModel.loadData(courseId);
+        }
 
     }
 

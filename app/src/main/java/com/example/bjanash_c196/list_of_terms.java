@@ -12,6 +12,7 @@ import com.example.bjanash_c196.database.TermEntity;
 import com.example.bjanash_c196.ui.TermsAdapter;
 import com.example.bjanash_c196.utilities.SampleData;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -31,6 +32,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 public class list_of_terms extends AppCompatActivity {
 

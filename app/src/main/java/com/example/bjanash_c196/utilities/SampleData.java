@@ -17,18 +17,21 @@ public class SampleData {
     private static final String SAMPLE_TERM_TITLE_2 = "Sample Term 2";
     private static final String SAMPLE_TERM_TITLE_3 = "Sample Term 3";
     private static final String SAMPLE_TERM_TITLE_4 = "Sample Term 4";
-    private static Date getDate(int diff) {
+    private static final String SAMPLE_TERM_DATE_1 = "2020-11-26";
+    private static final String SAMPLE_TERM_DATE_2 = "1984-01-05";
+    ;
+    /*private static Date getDate(int diff) {
         GregorianCalendar cal = new GregorianCalendar();
         cal.add(Calendar.MILLISECOND, diff);
         return cal.getTime();
-    }
+    }*/
 
     public static List<TermEntity> getTerms() {
         List<TermEntity> terms = new ArrayList<>();
-        terms.add(new TermEntity(SAMPLE_TERM_TITLE, getDate(0), getDate(1)));
-        terms.add(new TermEntity(SAMPLE_TERM_TITLE_2, getDate(0), getDate(1)));
-        terms.add(new TermEntity(SAMPLE_TERM_TITLE_3, getDate(0), getDate(1)));
-        terms.add(new TermEntity(SAMPLE_TERM_TITLE_4, getDate(0), getDate(1)));
+        terms.add(new TermEntity(SAMPLE_TERM_TITLE, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2));
+        terms.add(new TermEntity(SAMPLE_TERM_TITLE_2, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2));
+        terms.add(new TermEntity(SAMPLE_TERM_TITLE_3, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2));
+        terms.add(new TermEntity(SAMPLE_TERM_TITLE_4, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2));
         return terms;
     }
 
@@ -60,10 +63,10 @@ public class SampleData {
 
     public static List<CourseEntity> getCourses() {
         List<CourseEntity> courses = new ArrayList<>();
-        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE, getDate(0), getDate(1),SAMPLE_COURSE_STATUS,SAMPLE_COURSE_MENTOR,SAMPLE_PHONE_NUMBER,SAMPLE_EMAIL_ADDRESS));
-        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE_2, getDate(0), getDate(1),SAMPLE_COURSE_STATUS_2,SAMPLE_COURSE_MENTOR_2,SAMPLE_PHONE_NUMBER_2,SAMPLE_EMAIL_ADDRESS_2));
-        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE_3, getDate(0), getDate(1),SAMPLE_COURSE_STATUS_3,SAMPLE_COURSE_MENTOR_3,SAMPLE_PHONE_NUMBER_3,SAMPLE_EMAIL_ADDRESS_3));
-        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE_4, getDate(0), getDate(1),SAMPLE_COURSE_STATUS_4,SAMPLE_COURSE_MENTOR_4,SAMPLE_PHONE_NUMBER_4,SAMPLE_EMAIL_ADDRESS_4));
+        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2,SAMPLE_COURSE_STATUS,SAMPLE_COURSE_MENTOR,SAMPLE_PHONE_NUMBER,SAMPLE_EMAIL_ADDRESS));
+        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE_2, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2,SAMPLE_COURSE_STATUS_2,SAMPLE_COURSE_MENTOR_2,SAMPLE_PHONE_NUMBER_2,SAMPLE_EMAIL_ADDRESS_2));
+        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE_3, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2,SAMPLE_COURSE_STATUS_3,SAMPLE_COURSE_MENTOR_3,SAMPLE_PHONE_NUMBER_3,SAMPLE_EMAIL_ADDRESS_3));
+        courses.add(new CourseEntity(SAMPLE_COURSE_TITLE_4, SAMPLE_TERM_DATE_1, SAMPLE_TERM_DATE_2,SAMPLE_COURSE_STATUS_4,SAMPLE_COURSE_MENTOR_4,SAMPLE_PHONE_NUMBER_4,SAMPLE_EMAIL_ADDRESS_4));
         return courses;
     }
 
@@ -100,10 +103,10 @@ public class SampleData {
 
     public static List<AssessmentEntity> getAssessments() {
         List<AssessmentEntity> assessments = new ArrayList<>();
-        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE, getDate(0), SAMPLE_ASSESSMENT_TYPE));
-        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_2, getDate(1), SAMPLE_ASSESSMENT_TYPE_2));
-        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_3, getDate(2), SAMPLE_ASSESSMENT_TYPE_3));
-        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_4, getDate(3), SAMPLE_ASSESSMENT_TYPE_4));
+        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE, SAMPLE_TERM_DATE_1, SAMPLE_ASSESSMENT_TYPE));
+        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_2, SAMPLE_TERM_DATE_1, SAMPLE_ASSESSMENT_TYPE_2));
+        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_3, SAMPLE_TERM_DATE_1, SAMPLE_ASSESSMENT_TYPE_3));
+        assessments.add(new AssessmentEntity(SAMPLE_ASSESSMENT_TITLE_4, SAMPLE_TERM_DATE_1, SAMPLE_ASSESSMENT_TYPE_4));
         return assessments;
     }
 }

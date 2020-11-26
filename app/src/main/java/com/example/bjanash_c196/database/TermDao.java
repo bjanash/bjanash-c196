@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -21,8 +22,9 @@ public interface TermDao {
     @Delete
     void deleteTerm(TermEntity termEntity);
 
-    @Query("SELECT * FROM terms WHERE :termTitle = termTitle")
-    TermEntity getTermbyTitle(String termTitle);
+    @Query("SELECT * FROM terms WHERE :termTitle = termTitle AND :termStartDate = termStartDate AND :termEndDate = termEndDate")
+    TermEntity getTermbyTitle(String termTitle, String termStartDate, String termEndDate );
+
 
     @Query("SELECT * FROM terms ORDER BY termStartDate DESC")
     LiveData<List<TermEntity>> getAllTerms();

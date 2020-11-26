@@ -12,10 +12,10 @@ import java.util.Date;
 public class AssessmentEntity {
     @PrimaryKey @NonNull
     private String assessmentTitle;
-    private Date assessmentDueDate;
+    private String assessmentDueDate;
     private String assessmentType;
 
-    public AssessmentEntity(String assessmentTitle, Date assessmentDueDate, String assessmentType) {
+    public AssessmentEntity(String assessmentTitle, String assessmentDueDate, String assessmentType) {
         this.assessmentTitle = assessmentTitle;
         this.assessmentDueDate = assessmentDueDate;
         this.assessmentType = assessmentType;
@@ -33,11 +33,11 @@ public class AssessmentEntity {
         this.assessmentTitle = assessmentTitle;
     }
 
-    public Date getAssessmentDueDate() {
+    public String getAssessmentDueDate() {
         return assessmentDueDate;
     }
 
-    public void setAssessmentDueDate(Date assessmentDueDate) {
+    public void setAssessmentDueDate(String assessmentDueDate) {
         this.assessmentDueDate = assessmentDueDate;
     }
 

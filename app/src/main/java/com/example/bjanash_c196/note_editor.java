@@ -20,12 +20,16 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.bjanash_c196.utilities.Constants.NOTE_TITLE_ID;
+import static com.example.bjanash_c196.utilities.Constants.TERM_TITLE_ID;
+
 public class note_editor extends AppCompatActivity {
 
     @BindView(R.id.NoteTitle)
     TextView mNoteTitle;
 
     private NoteEditorViewModel mNoteViewModel;
+    private boolean mNewNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,15 @@ public class note_editor extends AppCompatActivity {
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle("New Note");
+            mNewNote = true;
+        } else {
+            setTitle("Edit Note");
+            String noteId = (String) extras.get(NOTE_TITLE_ID);
+            mNoteViewModel.loadData(noteId);
+        }
 
     }
 

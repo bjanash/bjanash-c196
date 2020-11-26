@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.bjanash_c196.utilities.SampleData;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -118,6 +119,31 @@ public class AppRepository {
             @Override
             public void run() {
                 mDb.courseDao().deleteAll();
+            }
+        });
+    }
+
+    public TermEntity getTermById(String termId, String termStartDate, String termEndDate) { return mDb.termDao().getTermbyTitle(termId, termStartDate, termEndDate); }
+    public NoteEntity getNoteById(String noteId) {
+        return mDb.noteDao().getNotebyTitle(noteId);
+    }
+    public CourseEntity getCourseById(String courseId) { return mDb.courseDao().getCoursebyTitle(courseId); }
+    public AssessmentEntity getAssessmentById(String assessmentId) { return mDb.assessmentDao().getAssessmentbyTitle(assessmentId); }
+
+    public void insertTerm(final TermEntity term) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDao().insertTerm(term);
+            }
+        });
+    }
+
+    public void deleteTerm(final TermEntity term) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDao().deleteTerm(term);
             }
         });
     }

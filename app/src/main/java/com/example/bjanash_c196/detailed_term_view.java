@@ -29,4 +29,5 @@ public class detailed_term_view extends AppCompatActivity {
         });
     }
 
+
 }

@@ -13,8 +13,12 @@
         android:layout_width="321dp"
         android:layout_height="49dp"
         android:autofillHints="Enter Term Title"
+        android:hint="Enter Term Title"
         android:inputType="text"
-        android:text="@string/term_title"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="left"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/TermStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,12 +30,16 @@
         android:layout_width="321dp"
         android:layout_height="49dp"
         android:layout_marginTop="64dp"
-        android:text="@string/term_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TermTitle"
-        android:inputType="text"
+        android:inputType=""
         android:autofillHints="Enter Term Start Date"
+        android:hint="Enter Term Start Date"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="left"
+        android:textColorHint="@color/colorPrimaryDark"
         tools:ignore="LabelFor"/>
 
     <EditText
@@ -39,32 +47,16 @@
         android:layout_width="321dp"
         android:layout_height="49dp"
         android:layout_marginTop="60dp"
-        android:text="@string/term_end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TermStart"
         android:inputType="text"
         android:autofillHints="Enter Term End Date"
+        android:hint="Enter Term End Date"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="left"
+        android:textColorHint="@color/colorPrimaryDark"
         tools:ignore="LabelFor"/>
 
-    <Button
-        android:id="@+id/SAVE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TermEnd" />
-
-    <Button
-        android:id="@+id/CANCEL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SAVE"
-        app:layout_constraintVertical_bias="0.275" />
 </androidx.constraintlayout.widget.ConstraintLayout>

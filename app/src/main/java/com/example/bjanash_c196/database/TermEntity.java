@@ -1,6 +1,7 @@
 package com.example.bjanash_c196.database;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -11,10 +12,10 @@ import java.util.Date;
 public class TermEntity {
     @PrimaryKey @NonNull
     private String termTitle;
-    private Date termStartDate;
-    private Date termEndDate;
+    private String termStartDate;
+    private String termEndDate;
 
-    public TermEntity(String termTitle, Date termStartDate, Date termEndDate) {
+    public TermEntity(String termTitle, String termStartDate, String termEndDate) {
         this.termTitle = termTitle;
         this.termStartDate = termStartDate;
         this.termEndDate = termEndDate;
@@ -33,19 +34,19 @@ public class TermEntity {
         this.termTitle = termTitle;
     }
 
-    public Date getTermStartDate() {
+    public String getTermStartDate() {
         return termStartDate;
     }
 
-    public void setTermStartDate(Date termStartDate) {
+    public void setTermStartDate(String termStartDate) {
         this.termStartDate = termStartDate;
     }
 
-    public Date getTermEndDate() {
+    public String getTermEndDate() {
         return termEndDate;
     }
 
-    public void setTermEndDate(Date termEndDate) {
+    public void setTermEndDate(String termEndDate) {
         this.termEndDate = termEndDate;
     }
 

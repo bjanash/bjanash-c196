@@ -20,12 +20,16 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.bjanash_c196.utilities.Constants.ASSESSMENT_TITLE_ID;
+import static com.example.bjanash_c196.utilities.Constants.COURSE_TITLE_ID;
+
 public class assessment_editor extends AppCompatActivity {
 
     @BindView(R.id.AssessmentTitle)
     TextView mAssessmentTitle;
 
     private AssessmentEditorViewModel mAssessmentViewModel;
+    private boolean mNewAssessment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,15 @@ public class assessment_editor extends AppCompatActivity {
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            setTitle("New Assessment");
+            mNewAssessment = true;
+        } else {
+            setTitle("Edit Assessment");
+            String assessmentId = (String) extras.get(ASSESSMENT_TITLE_ID);
+            mAssessmentViewModel.loadData(assessmentId);
+        }
 
     }
 

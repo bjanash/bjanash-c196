@@ -48,4 +48,6 @@
     <string name="see_list_of_notes">See List of Notes</string>
     <string name="title_activity_list_of_notes_2">list_of_notes_2</string>
     <string name="delete_all_notes">Delete All Notes</string>
+    <string name="delete">delete_term</string>
+    <string name="delete_sample_data">Delete Sample Data</string>
 </resources>

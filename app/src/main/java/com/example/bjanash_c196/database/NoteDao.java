@@ -6,30 +6,37 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
 public interface NoteDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertNote(NoteEntity NoteEntity);
+    @Query("SELECT * FROM notes WHERE courseIdFk = :courseId ORDER BY noteId")
+    List<NoteEntity> getNoteList(int courseId);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<NoteEntity> notes);
+    @Query("SELECT * FROM notes WHERE courseIdFk = :courseId and noteId = :noteId")
+    NoteEntity getNote (int courseId, int noteId);
 
-    @Delete
-    void deleteNote(NoteEntity NoteEntity);
+    @Query("INSERT INTO notes (courseIdFk, noteTitle)\n" + "VALUES(:courseId, \"Note Name\");")
+    void addNote(int courseId);
 
-    @Query("SELECT * FROM notes WHERE :noteTitle = noteTitle")
-    NoteEntity getNotebyTitle(String noteTitle);
-
-    @Query("SELECT * FROM notes ORDER BY noteTitle DESC")
-    LiveData<List<NoteEntity>> getAllNotes();
+    @Query("SELECT * FROM notes")
+    List<NoteEntity> getAllNotes();
 
     @Query("DELETE FROM notes")
-    void deleteAll();
+    public void destroyNotesInTable();
 
-    @Query("SELECT COUNT(*) FROM notes")
-    String getCount();
+    @Insert
+    void insertNote (NoteEntity note);
+
+    @Insert
+    void insertAllNotes (NoteEntity... note);
+
+    @Update
+    void updateNote (NoteEntity note);
+
+    @Delete
+    void deleteNote (NoteEntity note);
 }

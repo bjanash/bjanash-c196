@@ -16,15 +16,11 @@ import com.example.bjanash_c196.database.NoteDao;
 import com.example.bjanash_c196.database.NoteEntity;
 import com.example.bjanash_c196.database.TermDao;
 import com.example.bjanash_c196.database.TermEntity;
-import com.example.bjanash_c196.utilities.SampleData;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 

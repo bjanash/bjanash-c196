@@ -72,12 +72,11 @@ public class term_editor extends AppCompatActivity {
         mTermViewModel.mLiveTerm.observe(this, new Observer<TermEntity>() {
             @Override
             public void onChanged(TermEntity termEntity) {
-                //Need to convert data type so that Dates can be brought up. This is where I left off.
-
+                //Need to convert data type so that Dates can be brought up. This is where I left off
 
                 mTermTitle.setText(termEntity.getTermTitle());
-                mTermStart.setText(termEntity.getTermStartDate());
-                mTermEnd.setText(termEntity.getTermEndDate());
+                //mTermStart.setText(termEntity.getTermStartDate());
+                //mTermEnd.setText(termEntity.getTermEndDate());
 
             }
         });

@@ -23,11 +23,11 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract NoteDao noteDao();
     public abstract TermDao termDao();
 
-    public static AppDatabase getInstance(Context context) {
+    public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {
             synchronized (LOCK) {
                 if (instance == null) {
-                    instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME).build();
+                    instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME).allowMainThreadQueries().build();
                 }
             }
         }

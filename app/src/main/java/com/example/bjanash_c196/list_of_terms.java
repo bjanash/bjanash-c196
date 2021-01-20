@@ -3,92 +3,97 @@ package com.example.bjanash_c196;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.bjanash_c196.ViewModel.AssessmentViewModel;
-import com.example.bjanash_c196.ViewModel.TermViewModel;
-import com.example.bjanash_c196.database.AssessmentEntity;
-import com.example.bjanash_c196.database.CourseEntity;
-import com.example.bjanash_c196.database.NoteEntity;
+import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.TermEntity;
-import com.example.bjanash_c196.ui.TermsAdapter;
-import com.example.bjanash_c196.utilities.SampleData;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Optional;
 
 public class list_of_terms extends AppCompatActivity {
 
-    @BindView(R.id.terms_recyclerView)
-    RecyclerView mtermsRecyclerView;
-    private TermViewModel mTermViewModel;
+    AppDatabase db;
+    ListView listView;
 
-    private List<TermEntity> termsData = new ArrayList<>();
-    private TermsAdapter mTermAdapter;
-
-    @OnClick(R.id.fab_addTerm)
-    void fabClickHandler() {
-        Intent intent = new Intent(this, term_editor.class);
-        startActivity(intent);
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateList();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_terms);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setTitle("Term List");
+        listView = findViewById(R.id.terms_listView);
+        db = AppDatabase.getInstance(getApplicationContext());
 
-        ButterKnife.bind(this);
-        initTermViewModel();
-        initTermsRecyclerView();
-    }
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-
-    private void initTermsRecyclerView(){
-        mtermsRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mtermsRecyclerView.setLayoutManager(layoutManager);
-    }
-
-    private void initTermViewModel() {
-        final Observer<List<TermEntity>> termsObserver = new Observer<List<TermEntity>>() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onChanged(List<TermEntity> termEntities) {
-                termsData.clear();
-                termsData.addAll(termEntities);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Position clicked: " + position);
+                int termId;
+                List<TermEntity> termEntityList = db.termDao().getTermList();
+                termId = termEntityList.get(position).getTermId();
+                Intent intent = new Intent(getApplicationContext(), detailed_term_view.class);
+                intent.putExtra("termId", termId);
 
-                if(mTermAdapter == null){
-                    mTermAdapter = new TermsAdapter(termsData, list_of_terms.this);
-                    mtermsRecyclerView.setAdapter(mTermAdapter);
-                } else{
-                    mTermAdapter.notifyDataSetChanged();
-                }
+                System.out.println("termId selected = " + String.valueOf(termId));
+                startActivity(intent);
+
             }
-        };
+        });
 
-        mTermViewModel = new ViewModelProvider(this).get(TermViewModel.class);
+       updateList();
 
-        mTermViewModel.mTerms.observe(this,termsObserver);
+        FloatingActionButton fab_addTerm = findViewById(R.id.fab_addTerm);
+        fab_addTerm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                TermEntity tempTerm1 = new TermEntity();
+                tempTerm1.setTermTitle("Term Added");
+                tempTerm1.setTermStartDate(calendar.getTime());
+                calendar.add(Calendar.MONTH, 1);
+                tempTerm1.setTermEndDate(calendar.getTime());
+                db.termDao().insertTerm(tempTerm1);
+                updateList();
+
+            }
+        });
 
     }
+
+    private void updateList() {
+        List<TermEntity> allTerms = db.termDao().getTermList();
+        System.out.println("Number of rows in table: " + allTerms.size());
+
+        String[] items = new String[allTerms.size()];
+        if(!allTerms.isEmpty()) {
+            for(int i = 0; i < allTerms.size(); i++) {
+                items[i] = allTerms.get(i).getTermTitle();
+                System.out.println("Term in position = " + i + " with Name = " + items[i]);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,26 +107,9 @@ public class list_of_terms extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_add_sample_data) {
-            addSampleTermsData();
-            return true;
-        } else if(id == R.id.action_delete_all){
-            deleteAllTerms();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+       return super.onOptionsItemSelected(item);
     }
 
-    private void deleteAllTerms() {
-        mTermViewModel.deleteAllTerms();
-    }
-
-    private void addSampleTermsData() {
-        mTermViewModel.addSampleTermsData();
-    }
 
 }

@@ -4,9 +4,6 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.bjanash_c196.utilities.SampleData;
-
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -30,15 +27,15 @@ public class AppRepository {
 
     private AppRepository(Context context) {
         mDb = AppDatabase.getInstance(context);
-        mTerms = getAllTerms();
-        mAssessments = getAllAssessments();
-        mCourses = getAllCourses();
-        mNotes = getAllNotes();
+       // mTerms = getAllTerms();
+        //mAssessments = getAllAssessments();
+        //mCourses = getAllCourses();
+        //mNotes = getAllNotes();
 
     }
 
 
-   public void addSampleTermsData() {
+   /* public void addSampleTermsData() {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -124,11 +121,11 @@ public class AppRepository {
     }
 
     public TermEntity getTermById(String termId, String termStartDate, String termEndDate) { return mDb.termDao().getTermbyTitle(termId, termStartDate, termEndDate); }
-    public NoteEntity getNoteById(String noteId) {
-        return mDb.noteDao().getNotebyTitle(noteId);
+    public CourseEntity getCourseById(String courseId, String courseStart, String courseEnd, String courseStatus, String mentorName, String phoneNumber, String emailAddress, String termTitle) { return mDb.courseDao().getCoursebyTitle(courseId, courseStart, courseEnd, courseStatus, mentorName, phoneNumber, emailAddress, termTitle); }
+    public NoteEntity getNoteById(String noteId, String noteContent) {
+        return mDb.noteDao().getNotebyTitle(noteId, noteContent);
     }
-    public CourseEntity getCourseById(String courseId) { return mDb.courseDao().getCoursebyTitle(courseId); }
-    public AssessmentEntity getAssessmentById(String assessmentId) { return mDb.assessmentDao().getAssessmentbyTitle(assessmentId); }
+    public AssessmentEntity getAssessmentById(String assessmentId, String assessmentDueDate, String assessmentType) { return mDb.assessmentDao().getAssessmentbyTitle(assessmentId, assessmentDueDate, assessmentType); }
 
     public void insertTerm(final TermEntity term) {
         executor.execute(new Runnable() {
@@ -147,4 +144,66 @@ public class AppRepository {
             }
         });
     }
+
+    public void insertCourse(final CourseEntity course) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.courseDao().insertCourse(course);
+            }
+        });
+    }
+
+    public void deleteCourse(final CourseEntity course) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.courseDao().deleteCourse(course);
+            }
+        });
+    }
+
+    public void insertAssessment(final AssessmentEntity assessment) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.assessmentDao().insertAssessment(assessment);
+            }
+        });
+    }
+
+    public void deleteAssessment(final AssessmentEntity assessment) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.assessmentDao().deleteAssessment(assessment);
+            }
+        });
+    }
+
+    public void insertNote(final NoteEntity note) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.noteDao().insertNote(note);
+            }
+        });
+    }
+
+    public void deleteNote(final NoteEntity note) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.noteDao().deleteNote(note);
+            }
+        });
+    }
+
+    public CourseEntity getTermTitle(String termTitle) {
+        { return mDb.courseDao().getCourseTermTitle(termTitle); }
+    }
+*/
+
+
+
 }

@@ -6,30 +6,38 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
 public interface CourseDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertCourse(CourseEntity courseEntity);
+    @Query("SELECT * FROM courses WHERE termIdFk = :termId ORDER BY courseId")
+    List<CourseEntity> getCourseList(int termId);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<CourseEntity> courses);
+    @Query("SELECT * FROM courses WHERE termIdFk = :termId and courseId = :courseId")
+    CourseEntity getCourse (int termId, int courseId);
 
-    @Delete
-    void deleteCourse(CourseEntity courseEntity);
+    @Query("INSERT INTO courses (termIdFk, courseTitle)\n" + "VALUES(:termId, \"Course Name\");")
+    void addCourse(int termId);
 
-    @Query("SELECT * FROM courses WHERE :courseTitle = courseTitle")
-    CourseEntity getCoursebyTitle(String courseTitle);
-
-    @Query("SELECT * FROM courses ORDER BY courseStart DESC")
-    LiveData<List<CourseEntity>> getAllCourses();
+    @Query("SELECT * FROM courses")
+    List<CourseEntity> getAllCourses();
 
     @Query("DELETE FROM courses")
-    void deleteAll();
+    public void destroyCoursesInTable();
 
-    @Query("SELECT COUNT(*) FROM courses")
-    String getCount();
+    @Insert
+    void insertCourse (CourseEntity course);
+
+    @Insert
+    void insertAllCourses (CourseEntity... course);
+
+    @Update
+    void updateCourse (CourseEntity course);
+
+    @Delete
+    void deleteCourse (CourseEntity course);
+
 }

@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -13,27 +14,30 @@ import java.util.List;
 @Dao
 public interface TermDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertTerm(TermEntity termEntity);
+    @Query("SELECT * FROM terms ORDER BY termId")
+    List<TermEntity> getTermList();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<TermEntity> terms);
+    @Query("SELECT * FROM terms WHERE termId = :termId ORDER BY termId")
+    TermEntity getTerm (int termId);
 
-    @Delete
-    void deleteTerm(TermEntity termEntity);
-
-    @Query("SELECT * FROM terms WHERE :termTitle = termTitle AND :termStartDate = termStartDate AND :termEndDate = termEndDate")
-    TermEntity getTermbyTitle(String termTitle, String termStartDate, String termEndDate );
-
-
-    @Query("SELECT * FROM terms ORDER BY termStartDate DESC")
-    LiveData<List<TermEntity>> getAllTerms();
+    @Query("SELECT * FROM terms")
+    List<TermEntity> getAllTerms();
 
     @Query("DELETE FROM terms")
-    void deleteAll();
+    public void destroyTermsInTable();
 
-    @Query("SELECT COUNT(*) FROM terms")
-    String getCount();
+    @Insert
+    void insertTerm (TermEntity term);
+
+    @Insert
+    void insertAllTerms (TermEntity... term);
+
+    @Update
+    void updateTerm (TermEntity term);
+
+    @Delete
+    void deleteTerm (TermEntity term);
+
 }
 
 

@@ -12,7 +12,7 @@
         <activity
             android:name=".list_of_notes"
             android:label="@string/title_activity_list_of_notes_2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".detailed_note_view"
             android:label="@string/title_activity_detailed_note_view"

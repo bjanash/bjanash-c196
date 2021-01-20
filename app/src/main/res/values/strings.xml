@@ -50,4 +50,16 @@
     <string name="delete_all_notes">Delete All Notes</string>
     <string name="delete">delete_term</string>
     <string name="delete_sample_data">Delete Sample Data</string>
+    <string name="delete_course">delete_course</string>
+    <string name="delete_assessment">Delete Assessment</string>
+    <string name="delete_note">delete_note</string>
+    <string name="title_activity_homepage_activity">homepage_activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

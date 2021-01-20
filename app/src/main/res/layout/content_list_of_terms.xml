@@ -8,16 +8,17 @@
     tools:context=".list_of_terms"
     tools:showIn="@layout/activity_list_of_terms">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/terms_recyclerView"
-        android:layout_width="332dp"
-        android:layout_height="669dp"
+    <ListView
+        android:id="@+id/terms_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:focusable="true"
         android:clickable="true"
         android:focusableInTouchMode="true"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,41 +3,53 @@ package com.example.bjanash_c196;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.AssessmentEntity;
 import com.example.bjanash_c196.database.CourseEntity;
-import com.example.bjanash_c196.database.NoteEntity;
 import com.example.bjanash_c196.database.TermEntity;
-import com.example.bjanash_c196.utilities.SampleData;
+import com.example.bjanash_c196.utilities.PopulateDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    //private List<TermEntity> termsData = new ArrayList<>();
-    //private List<CourseEntity> coursesData = new ArrayList<>();
-    //private List<NoteEntity> notesData = new ArrayList<>();
-    //private List<AssessmentEntity> assessmentsData = new ArrayList<>();
-
-
-
-    //Button list_of_terms_button = (Button) findViewById(R.id.list_of_terms_button);
-    //Button list_of_courses_button = (Button) findViewById(R.id.list_of_courses_button);
-    //Button list_of_assessments_button = (Button) findViewById(R.id.list_of_assessments_button);
+    public static String LOG_TAG ="Main Activity";
+    AppDatabase db;
+    TextView coursesPendingTextView;
+    TextView coursesCompletedTextView;
+    TextView coursesDroppedTextView;
+    TextView assessmentPendingTextView;
+    TextView assessmentPassedTextView;
+    TextView assessmentFailedTextView;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = AppDatabase.getInstance(getApplicationContext());
+        //Views//
+        coursesPendingTextView = findViewById(R.id.coursesPendingTextView);
+        coursesCompletedTextView =  findViewById(R.id.coursesCompletedTextView);
+        coursesDroppedTextView =  findViewById(R.id.coursesDroppedTextView);
+        assessmentPendingTextView =  findViewById(R.id.assessmentPendingTextView);
+        assessmentPassedTextView =  findViewById(R.id.assessmentPassedTextView);
+        assessmentFailedTextView =  findViewById(R.id.assessmentFailedTextView);
+        
+        updateViews();
+        
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,35 +62,109 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Go to List of Courses Screen
-        Button courses = (Button) findViewById(R.id.list_of_courses_button);
-        courses.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), list_of_courses.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
+        //Populate DB
+        ConstraintLayout myLayout = findViewById(R.id.content_main);
+        ConstraintSet set = new ConstraintSet();
+        Button populateDbButton = new Button(getApplicationContext());
+        populateDbButton.setText("Populate Database");
+        populateDbButton.setId(R.id.populateDbButton);
 
-        //Go to List of Assessments Screen
-        Button assessments = (Button) findViewById(R.id.list_of_assessments_button);
-        assessments.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), list_of_assessments.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
+        set.constrainHeight(populateDbButton.getId(), ConstraintSet.WRAP_CONTENT);
+        set.constrainWidth(populateDbButton.getId(), ConstraintSet.WRAP_CONTENT);
+        set.connect(populateDbButton.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM,8);
+        set.connect(populateDbButton.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT,8);
 
-        //Go to List of Notes Screen
-        Button notes = (Button) findViewById(R.id.list_of_notes_button);
-        notes.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), list_of_notes.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
+        if(myLayout.getParent() != null) {
+            ((ViewGroup) myLayout.getParent()).removeView(myLayout);
+        }
+
+        myLayout.addView(populateDbButton);
+        setContentView(myLayout);
+        set.applyTo(myLayout);
+
+        populateDbButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(LOG_TAG, "Populate Database Pressed");
+                PopulateDatabase populateDatabase = new PopulateDatabase();
+                populateDatabase.populate(getApplicationContext());
+                updateViews();
+            }}
+
+        );
+
+       //Destroy DB
+        Button destroyDbButton = new Button(getApplicationContext());
+        destroyDbButton.setText("Destroy Database");
+        destroyDbButton.setId(R.id.destroyDbButton);
+
+        set.constrainHeight(destroyDbButton.getId(), ConstraintSet.WRAP_CONTENT);
+        set.constrainWidth(destroyDbButton.getId(), ConstraintSet.WRAP_CONTENT);
+        set.connect(destroyDbButton.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM,8);
+        set.connect(destroyDbButton.getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT,8);
+
+        myLayout.addView(destroyDbButton);
+        setContentView(myLayout);
+        set.applyTo(myLayout);
+
+        destroyDbButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(LOG_TAG, "Destroy Database Pressed");
+                db.clearAllTables();
+                updateViews();
+            }}
+        );
+
 
     }
 
+    private void updateViews() {
+        int coursePending = 0;
+        int courseCompleted = 0;
+        int courseDropped = 0;
+        int assessmentPending = 0;
+        int assessmentPassed = 0;
+        int assessmentFailed = 0;
+
+        try {
+            List<TermEntity> termEntityList = db.termDao().getAllTerms();
+            List<CourseEntity> courseEntityList = db.courseDao().getAllCourses();
+            List<AssessmentEntity> assessmentEntityList = db.assessmentDao().getAllAssessments();
+
+            try {
+                for (int i = 0; i < courseEntityList.size(); i++) {
+                    if (courseEntityList.get(i).getCourseStatus().contains("Pending"))
+                        coursePending++;
+                    if (courseEntityList.get(i).getCourseStatus().contains("In-Progress"))
+                        coursePending++;
+                    if (courseEntityList.get(i).getCourseStatus().contains("Completed"))
+                        courseCompleted++;
+                    if (courseEntityList.get(i).getCourseStatus().contains("Dropped"))
+                        courseDropped++;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            for (int i = 0; i < assessmentEntityList.size(); i++) {
+                if (assessmentEntityList.get(i).getAssessmentStatus().contains("Pending"))
+                    assessmentPending++;
+                if (assessmentEntityList.get(i).getAssessmentStatus().contains("Passed"))
+                    assessmentPassed++;
+                if (assessmentEntityList.get(i).getAssessmentStatus().contains("Failed"))
+                    assessmentFailed++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        coursesPendingTextView.setText(String.valueOf(coursePending));
+        coursesCompletedTextView.setText(String.valueOf(courseCompleted));
+        coursesDroppedTextView.setText(String.valueOf(courseDropped));
+        assessmentPendingTextView.setText(String.valueOf(assessmentPending));
+        assessmentPassedTextView.setText(String.valueOf(assessmentFailed));
+        assessmentFailedTextView.setText(String.valueOf(assessmentPassed));
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,5 +186,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateViews();
     }
 }

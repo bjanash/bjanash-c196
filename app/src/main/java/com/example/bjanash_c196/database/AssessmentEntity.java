@@ -2,27 +2,65 @@ package com.example.bjanash_c196.database;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "assessments")
-public class AssessmentEntity {
-    @PrimaryKey @NonNull
-    private String assessmentTitle;
-    private String assessmentDueDate;
-    private String assessmentType;
+import static androidx.room.ForeignKey.CASCADE;
+//Fields & Table
+@Entity(tableName = "assessments",
+        foreignKeys = @ForeignKey(entity = CourseEntity.class,
+                parentColumns = "courseId",
+                childColumns = "courseIdFk",
+                onDelete = CASCADE))
 
-    public AssessmentEntity(String assessmentTitle, String assessmentDueDate, String assessmentType) {
+//Constructors
+public class AssessmentEntity {
+    @PrimaryKey (autoGenerate = true) @NonNull
+    private int assessmentId;
+    @ColumnInfo(name = "courseIdFk", index = true)
+    private int courseIdFk;
+    @ColumnInfo(name = "assessmentTitle")
+    private String assessmentTitle;
+    @ColumnInfo(name = "assessmentDate")
+    private Date assessmentDueDate;
+    @ColumnInfo(name = "assessmentType")
+    private String assessmentType;
+    @ColumnInfo(name = "assessmentStatus")
+    private String assessmentStatus;
+
+    public AssessmentEntity(int assessmentId, int courseIdFk, String assessmentTitle, Date assessmentDueDate, String assessmentType, String assessmentStatus) {
+        this.assessmentId = assessmentId;
+        this.courseIdFk = courseIdFk;
         this.assessmentTitle = assessmentTitle;
         this.assessmentDueDate = assessmentDueDate;
         this.assessmentType = assessmentType;
+        this.assessmentStatus= assessmentStatus;
     }
 
     @Ignore
     public AssessmentEntity() {
+    }
+
+//Getters & Setters
+    public int getAssessmentId() {
+        return assessmentId;
+    }
+
+    public void setAssessmentId(int assessmentId) {
+        this.assessmentId = assessmentId;
+    }
+
+    public int getCourseIdFk() {
+        return courseIdFk;
+    }
+
+    public void setCourseIdFk(int courseIdFk) {
+        this.courseIdFk = courseIdFk;
     }
 
     public String getAssessmentTitle() {
@@ -33,11 +71,11 @@ public class AssessmentEntity {
         this.assessmentTitle = assessmentTitle;
     }
 
-    public String getAssessmentDueDate() {
+    public Date getAssessmentDueDate() {
         return assessmentDueDate;
     }
 
-    public void setAssessmentDueDate(String assessmentDueDate) {
+    public void setAssessmentDueDate(Date assessmentDueDate) {
         this.assessmentDueDate = assessmentDueDate;
     }
 
@@ -49,10 +87,21 @@ public class AssessmentEntity {
         this.assessmentType = assessmentType;
     }
 
+    public String getAssessmentStatus() {
+        return assessmentStatus;
+    }
+
+    public void setAssessmentStatus(String assessmentStatus) {
+        this.assessmentStatus = assessmentStatus;
+    }
+
+//To String
     @Override
     public String toString() {
         return "AssessmentEntity{" +
-                "assessmentTitle='" + assessmentTitle + '\'' +
+                "assessmentId=" + assessmentId +
+                ", courseIdFk=" + courseIdFk +
+                ", assessmentTitle='" + assessmentTitle + '\'' +
                 ", assessmentDueDate=" + assessmentDueDate +
                 ", assessmentType='" + assessmentType + '\'' +
                 '}';

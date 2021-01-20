@@ -14,6 +14,10 @@
         android:layout_height="49dp"
         android:autofillHints="Enter Assessment Title"
         android:inputType="text"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="left"
+        android:textColorHint="@color/colorPrimaryDark"
         android:text="@string/assessment_title"
         app:layout_constraintBottom_toTopOf="@+id/DueDate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +35,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AssessmentTitle"
         android:inputType="text"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="left"
+        android:textColorHint="@color/colorPrimaryDark"
         android:autofillHints="Enter Assessment Due Date"
         tools:ignore="LabelFor,TextFields"/>
 
@@ -44,28 +52,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DueDate"
         android:inputType="text"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:gravity="left"
+        android:textColorHint="@color/colorPrimaryDark"
         android:autofillHints="Enter Assessment Type"
         tools:ignore="LabelFor"/>
-
-    <Button
-        android:id="@+id/SAVE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AssessmentType" />
-
-    <Button
-        android:id="@+id/CANCEL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SAVE"
-        app:layout_constraintVertical_bias="0.275" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

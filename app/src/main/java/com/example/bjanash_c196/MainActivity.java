@@ -2,25 +2,24 @@ package com.example.bjanash_c196;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.bjanash_c196.database.AppDatabase;
-import com.example.bjanash_c196.database.AssessmentEntity;
-import com.example.bjanash_c196.database.CourseEntity;
-import com.example.bjanash_c196.database.TermEntity;
-import com.example.bjanash_c196.utilities.PopulateDatabase;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+import com.example.bjanash_c196.database.AppDatabase;
+import com.example.bjanash_c196.database.AssessmentEntity;
+import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.TermEntity;
+import com.example.bjanash_c196.utilities.PopulateDatabase;
 
 import java.util.List;
 

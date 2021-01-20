@@ -2,13 +2,15 @@ package com.example.bjanash_c196;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.example.bjanash_c196.database.AppDatabase;
-import com.example.bjanash_c196.database.NoteEntity;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.bjanash_c196.database.AppDatabase;
+import com.example.bjanash_c196.database.NoteEntity;
 
 public class detailed_note_view extends AppCompatActivity {
 

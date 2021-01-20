@@ -2,47 +2,27 @@ package com.example.bjanash_c196;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.bjanash_c196.ViewModel.CourseEditorViewModel;
-import com.example.bjanash_c196.ViewModel.TermEditorViewModel;
-import com.example.bjanash_c196.database.AppDatabase;
-import com.example.bjanash_c196.database.AssessmentEntity;
-import com.example.bjanash_c196.database.CourseEntity;
-import com.example.bjanash_c196.database.NoteEntity;
-import com.example.bjanash_c196.database.TermEntity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.bjanash_c196.database.AppDatabase;
+import com.example.bjanash_c196.database.AssessmentEntity;
+import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.NoteEntity;
+import com.example.bjanash_c196.database.TermEntity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import static com.example.bjanash_c196.utilities.Constants.COURSE_STATUS_ID;
-import static com.example.bjanash_c196.utilities.Constants.COURSE_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.EMAIL_ADDRESS_ID;
-import static com.example.bjanash_c196.utilities.Constants.END_COURSE_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.END_TERM_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.MENTOR_NAME_ID;
-import static com.example.bjanash_c196.utilities.Constants.PHONE_NUMBER_ID;
-import static com.example.bjanash_c196.utilities.Constants.START_COURSE_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.START_TERM_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.TERM_TITLE_ID;
 
 public class detailed_course_view extends AppCompatActivity {
 

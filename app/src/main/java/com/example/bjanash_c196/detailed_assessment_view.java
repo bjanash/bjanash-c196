@@ -2,47 +2,19 @@ package com.example.bjanash_c196;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.example.bjanash_c196.ViewModel.AssessmentEditorViewModel;
-import com.example.bjanash_c196.ViewModel.AssessmentViewModel;
-import com.example.bjanash_c196.ViewModel.CourseViewModel;
-import com.example.bjanash_c196.ViewModel.TermEditorViewModel;
-import com.example.bjanash_c196.database.AppDatabase;
-import com.example.bjanash_c196.database.AssessmentEntity;
-import com.example.bjanash_c196.database.CourseEntity;
-import com.example.bjanash_c196.database.TermEntity;
-import com.example.bjanash_c196.ui.AssessmentsAdapter;
-import com.example.bjanash_c196.ui.CoursesAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import com.example.bjanash_c196.database.AppDatabase;
+import com.example.bjanash_c196.database.AssessmentEntity;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-import static com.example.bjanash_c196.utilities.Constants.ASSESSMENT_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.END_TERM_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.START_TERM_TITLE_ID;
-import static com.example.bjanash_c196.utilities.Constants.TERM_TITLE_ID;
 
 public class detailed_assessment_view extends AppCompatActivity {
 

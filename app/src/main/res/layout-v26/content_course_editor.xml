@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".course_editor"
+    tools:context=".edit_course_view"
     tools:showIn="@layout/activity_course_editor">
 
     <EditText
@@ -22,22 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="LabelFor" />
-
-    <EditText
-        android:id="@+id/TermTitle"
-        android:layout_width="321dp"
-        android:layout_height="49dp"
-        android:autofillHints="Enter Term Title"
-        android:ellipsize="end"
-        android:gravity="left"
-        android:hint="Enter Term Title"
-        android:inputType="text"
-        android:singleLine="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailAddress"
         tools:ignore="LabelFor" />
 
     <EditText
@@ -136,7 +120,27 @@
         android:autofillHints="Enter Email Address"
         tools:ignore="LabelFor,TextFields"/>
 
+    <Button
+        android:id="@+id/saveCourseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE COURSE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/deleteCourseButton"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
+    <Button
+        android:id="@+id/deleteCourseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:text="DELETE COURSE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

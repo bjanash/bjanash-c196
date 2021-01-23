@@ -2,6 +2,8 @@ package com.example.bjanash_c196;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -198,6 +200,32 @@ public class detailed_course_view extends AppCompatActivity {
         } else {
             selectedCourse = new CourseEntity();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.course_detail_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        if (item.getItemId() == R.id.action_edit_course) {
+            Intent intent = new Intent(this, edit_course_view.class);
+            intent.putExtra("termId", termId);
+            intent.putExtra("courseId", courseId);
+            System.out.println(termId);
+            this.startActivity(intent);
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+
+        return true;
     }
 
 

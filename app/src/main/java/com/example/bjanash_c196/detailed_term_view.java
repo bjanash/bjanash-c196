@@ -150,13 +150,13 @@ public class detailed_term_view extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        switch(item.getItemId()) {
-            case R.id.action_edit_term:
-                Intent intent = new Intent(this, detailed_term_view.class);
-                this.startActivity(intent);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_edit_term) {
+            Intent intent = new Intent(this, edit_term_view.class);
+            intent.putExtra("termId", termId);
+            System.out.println(termId);
+            this.startActivity(intent);
+        } else {
+            return super.onOptionsItemSelected(item);
         }
 
         return true;
@@ -166,6 +166,7 @@ public class detailed_term_view extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         selectedTerm = db.termDao().getTerm(termId);
+
         updateViews();
     }
 

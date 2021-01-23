@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".edit_course_view"
+            android:label="edit_course_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".edit_term_view"
+            android:label="edit_term_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".detailed_note_view"
             android:label="@string/title_activity_detailed_note_view"
             android:theme="@style/AppTheme.NoActionBar" />

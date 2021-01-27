@@ -9,6 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".AlertReminder" />
+        <activity
+            android:name=".edit_assessment_view"
+            android:label="edit_assessment_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".edit_notes_view"
+            android:label="edit_notes_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".edit_mentor_view"
+            android:label="edit_mentor_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".detailed_mentor_view"
+            android:label="detailed_mentor_view"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".edit_course_view"
             android:label="edit_course_view"

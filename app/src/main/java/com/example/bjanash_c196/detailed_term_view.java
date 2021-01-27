@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class detailed_term_view extends AppCompatActivity {
     Intent intent;
     int termId;
     int courseId;
+
 
     AppDatabase db;
     TermEntity selectedTerm;
@@ -84,11 +86,8 @@ public class detailed_term_view extends AppCompatActivity {
                 tempCourse1.setTermIdFk(termId);
                 tempCourse1.setCourseTitle("Course Added");
                 tempCourse1.setCourseStatus("change status");
-                tempCourse1.setMentorName("change mentor");
-                tempCourse1.setPhoneNumber("change phone #");
-                tempCourse1.setEmailAddress("change email");
                 tempCourse1.setCourseStart(calendar.getTime());
-                calendar.add(Calendar.MONTH, 1);
+                calendar.add(Calendar.MINUTE, 1);
                 tempCourse1.setCourseEnd(calendar.getTime());
                 db.courseDao().insertCourse(tempCourse1);
                 updateCourseList();
@@ -99,6 +98,19 @@ public class detailed_term_view extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button backToTerms = findViewById(R.id.backToTerms);
+        backToTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //CourseEntity updatedCourse = db.courseDao().getCourse(termId, courseId);
+                ///db.courseDao().deleteCourse(updatedCourse);
+                Intent intent = new Intent(getApplicationContext(), list_of_terms.class);
+                //intent.putExtra("termId", termId);
+                startActivity(intent);
+
+            }
+        });
 
 
     }

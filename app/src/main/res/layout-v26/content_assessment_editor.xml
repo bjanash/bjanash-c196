@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".assessment_editor"
+    tools:context=".edit_assessment_view"
     tools:showIn="@layout/activity_assessment_editor">
 
     <EditText
@@ -29,34 +29,73 @@
         android:id="@+id/DueDate"
         android:layout_width="321dp"
         android:layout_height="49dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints="Enter Assessment Due Date"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:inputType="text"
+        android:singleLine="true"
         android:text="@string/due_date"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AssessmentTitle"
-        android:inputType="text"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:gravity="left"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:autofillHints="Enter Assessment Due Date"
-        tools:ignore="LabelFor,TextFields"/>
+        tools:ignore="LabelFor,TextFields" />
 
     <EditText
         android:id="@+id/AssessmentType"
         android:layout_width="321dp"
         android:layout_height="49dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="Enter Assessment Type"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:inputType="text"
+        android:singleLine="true"
         android:text="@string/assessment_type"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DueDate"
-        android:inputType="text"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:gravity="left"
-        android:textColorHint="@color/colorPrimaryDark"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/assessmentStatus"
+        android:layout_width="321dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="40dp"
         android:autofillHints="Enter Assessment Type"
-        tools:ignore="LabelFor"/>
+        android:ellipsize="end"
+        android:gravity="left"
+        android:inputType="text"
+        android:singleLine="true"
+        android:text="@string/assessment_status"
+        android:textColorHint="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AssessmentType"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/saveAssessment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="SAVE ASSESSMENT"
+        app:layout_constraintEnd_toStartOf="@+id/deleteAssessment"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentStatus" />
+
+    <Button
+        android:id="@+id/deleteAssessment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="DELETE ASSESSMENT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentStatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

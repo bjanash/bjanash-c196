@@ -26,8 +26,6 @@
     <string name="title_activity_course_editor">course_editor</string>
     <string name="course_title">Course Title</string>
     <string name="course_status">Course Status</string>
-    <string name="mentor_name">Mentor Name</string>
-    <string name="phone_number">Phone Number</string>
     <string name="email_address">Email Address</string>
     <string name="course_start">Course Start</string>
     <string name="course_end">Course End</string>
@@ -64,4 +62,10 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="edit_term">Edit Term</string>
     <string name="edit_course">Edit Course</string>
+    <string name="edit_assessment">Edit Assessment</string>
+    <string name="mentor_name">Mentor Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="edit_mentor">Edit Mentor</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="assessment_status">Assessment Status</string>
 </resources>

@@ -23,9 +23,6 @@ public class edit_course_view extends AppCompatActivity {
     TextView CourseEnd;
     TextView CourseStart;
     TextView CourseStatus;
-    TextView MentorName;
-    TextView PhoneNumber;
-    TextView EmailAddress;
     Intent intent;
     int termId;
     int courseId;
@@ -50,9 +47,6 @@ public class edit_course_view extends AppCompatActivity {
         CourseStart = findViewById(R.id.CourseStart);
         CourseEnd = findViewById(R.id.CourseEnd);
         CourseStatus = findViewById(R.id.CourseStatus);
-        MentorName = findViewById(R.id.MentorName);
-        PhoneNumber = findViewById(R.id.PhoneNumber);
-        EmailAddress = findViewById(R.id.EmailAddress);
 
         updateViews();
 
@@ -67,18 +61,12 @@ public class edit_course_view extends AppCompatActivity {
                     Date formattedStartDate = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(courseStartDate);
                     Date formattedEndDate = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(courseEndDate);
                     String courseStatus = CourseStatus.getText().toString();
-                    String mentorName = MentorName.getText().toString();
-                    String phoneNumber = PhoneNumber.getText().toString();
-                    String emailAddress = EmailAddress.getText().toString();
 
                     CourseEntity updatedCourse = db.courseDao().getCourse(termId, courseId);
                     updatedCourse.setCourseTitle(courseTitle);
                     updatedCourse.setCourseStart(formattedStartDate);
                     updatedCourse.setCourseEnd(formattedEndDate);
                     updatedCourse.setCourseStatus(courseStatus);
-                    updatedCourse.setMentorName(mentorName);
-                    updatedCourse.setPhoneNumber(phoneNumber);
-                    updatedCourse.setEmailAddress(emailAddress);
                     db.courseDao().updateCourse(updatedCourse);
                     Intent intent = new Intent(getApplicationContext(), detailed_course_view.class);
                     intent.putExtra("termId", termId);
@@ -120,9 +108,6 @@ public class edit_course_view extends AppCompatActivity {
             CourseEnd.setText(tempEnd);
             CourseTitle.setText(selectedCourse.getCourseTitle());
             CourseStatus.setText(selectedCourse.getCourseStatus());
-            MentorName.setText(selectedCourse.getMentorName());
-            PhoneNumber.setText(selectedCourse.getPhoneNumber());
-            EmailAddress.setText(selectedCourse.getEmailAddress());
         } else {
             selectedCourse = new CourseEntity();
         }

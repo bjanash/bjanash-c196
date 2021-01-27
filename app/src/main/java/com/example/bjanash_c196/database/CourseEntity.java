@@ -32,15 +32,9 @@ public class CourseEntity {
     private Date courseAlertDate;
     @ColumnInfo(name = "courseStatus")
     private String courseStatus;
-    @ColumnInfo(name = "mentorName")
-    private String mentorName;
-    @ColumnInfo(name = "phoneNumber")
-    private String phoneNumber;
-    @ColumnInfo(name = "emailAddress")
-    private String emailAddress;
 
 //Constructors
-    public CourseEntity(int courseId, int termIdFk, String courseTitle, Date courseStart, Date courseEnd, Date courseAlertDate, String courseStatus, String mentorName, String phoneNumber, String emailAddress) {
+    public CourseEntity(int courseId, int termIdFk, String courseTitle, Date courseStart, Date courseEnd, Date courseAlertDate, String courseStatus) {
         this.courseId = courseId;
         this.termIdFk = termIdFk;
         this.courseTitle = courseTitle;
@@ -48,9 +42,6 @@ public class CourseEntity {
         this.courseEnd = courseEnd;
         this.courseAlertDate = courseAlertDate;
         this.courseStatus = courseStatus;
-        this.mentorName = mentorName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
     }
 
     @Ignore
@@ -114,29 +105,6 @@ public class CourseEntity {
         this.courseStatus = courseStatus;
     }
 
-    public String getMentorName() {
-        return mentorName;
-    }
-
-    public void setMentorName(String mentorName) {
-        this.mentorName = mentorName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
 
 //To String
     @Override
@@ -149,9 +117,6 @@ public class CourseEntity {
                 ", courseEnd=" + courseEnd +
                 ", courseAlertDate=" + courseAlertDate +
                 ", courseStatus='" + courseStatus + '\'' +
-                ", mentorName='" + mentorName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
                 '}';
     }
 }

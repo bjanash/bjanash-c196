@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.AssessmentEntity;
 import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.MentorEntity;
 import com.example.bjanash_c196.database.NoteEntity;
 import com.example.bjanash_c196.database.TermEntity;
 
@@ -33,6 +34,8 @@ public class PopulateDatabase extends AppCompatActivity {
     NoteEntity tempNote2 = new NoteEntity();
     NoteEntity tempNote3 = new NoteEntity();
 
+    MentorEntity tempMentor1 = new MentorEntity();
+
     AppDatabase db;
 
     public void populate (Context context) {
@@ -42,6 +45,7 @@ public class PopulateDatabase extends AppCompatActivity {
             insertCourses();
             insertAssessments();
             insertNotes();
+            insertMentors();
         } catch (Exception e) {
             e.printStackTrace();
             Log.d(LOG_TAG, "Populate DB Failed");
@@ -92,10 +96,7 @@ public class PopulateDatabase extends AppCompatActivity {
         tempCourse1.setCourseTitle("Software 1");
         tempCourse1.setCourseStart(start.getTime());
         tempCourse1.setCourseEnd(end.getTime());
-        tempCourse1.setEmailAddress("abc@123.net");
-        tempCourse1.setMentorName("Roger Federer");
         tempCourse1.setCourseStatus("Pending");
-        tempCourse1.setPhoneNumber("123-123-1234");
         tempCourse1.setTermIdFk(termEntityList.get(0).getTermId());
 
         start = Calendar.getInstance();
@@ -105,10 +106,7 @@ public class PopulateDatabase extends AppCompatActivity {
         tempCourse2.setCourseTitle("Software 2");
         tempCourse2.setCourseStart(start.getTime());
         tempCourse2.setCourseEnd(end.getTime());
-        tempCourse2.setEmailAddress("123@abc.net");
-        tempCourse2.setMentorName("Rafa Nadal");
         tempCourse2.setCourseStatus("Completed");
-        tempCourse2.setPhoneNumber("123-123-1234");
         tempCourse2.setTermIdFk(termEntityList.get(0).getTermId());
 
         start = Calendar.getInstance();
@@ -118,10 +116,7 @@ public class PopulateDatabase extends AppCompatActivity {
         tempCourse3.setCourseTitle("Software 3");
         tempCourse3.setCourseStart(start.getTime());
         tempCourse3.setCourseEnd(end.getTime());
-        tempCourse3.setEmailAddress("def@456.net");
-        tempCourse3.setMentorName("Andy Murray");
         tempCourse3.setCourseStatus("Dropped");
-        tempCourse3.setPhoneNumber("123-123-1234");
         tempCourse3.setTermIdFk(termEntityList.get(0).getTermId());
 
         db.courseDao().insertAllCourses(tempCourse1, tempCourse2, tempCourse3);
@@ -139,6 +134,21 @@ public class PopulateDatabase extends AppCompatActivity {
         tempNote1.setCourseIdFk(courseEntityList.get(0).getCourseId());
 
         db.noteDao().insertAllNotes(tempNote1);
+    }
+
+    private void insertMentors() {
+
+        List<TermEntity> termEntityList = db.termDao().getTermList();
+        List<CourseEntity> courseEntityList = db.courseDao().getCourseList(termEntityList.get(0).getTermId());
+
+        if (courseEntityList == null) return;
+
+        tempMentor1.setMentorName("Roger Federer");
+        tempMentor1.setEmailAddress("roger@goat.com");
+        tempMentor1.setPhoneNumber("123-123-1234");
+        tempMentor1.setCourseIdFk(courseEntityList.get(0).getCourseId());
+
+        db.mentorDao().insertAllMentors(tempMentor1);
     }
 
     private void insertAssessments() {

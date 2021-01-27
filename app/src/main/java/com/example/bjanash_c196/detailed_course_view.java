@@ -1,14 +1,22 @@
 package com.example.bjanash_c196;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,34 +24,40 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.AssessmentEntity;
 import com.example.bjanash_c196.database.CourseEntity;
+import com.example.bjanash_c196.database.MentorEntity;
 import com.example.bjanash_c196.database.NoteEntity;
 import com.example.bjanash_c196.database.TermEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.example.bjanash_c196.AlertReminder.LOG_INFO;
 
 public class detailed_course_view extends AppCompatActivity {
 
+    private static final int NOTIFY_ID = 747;
     ListView notes_listView;
     ListView assessments_listView;
+    ListView mentor_ListView;
     TextView CourseTitle;
     TextView CourseEnd;
     TextView CourseStart;
     TextView CourseStatus;
-    TextView MentorName;
-    TextView PhoneNumber;
-    TextView EmailAddress;
+
+
     Intent intent;
     int termId;
     int courseId;
 
     AppDatabase db;
     CourseEntity selectedCourse;
-    TermEntity selectedTerm;
     SimpleDateFormat formatter;
 
     @Override
@@ -64,16 +78,35 @@ public class detailed_course_view extends AppCompatActivity {
         CourseEnd = findViewById(R.id.CourseEnd);
         CourseStart = findViewById(R.id.CourseStart);
         CourseStatus = findViewById(R.id.CourseStatus);
-        MentorName = findViewById(R.id.MentorName);
-        PhoneNumber = findViewById(R.id.PhoneNumber);
-        EmailAddress = findViewById(R.id.EmailAddress);
 
         assessments_listView = findViewById(R.id.assessments_listView);
         notes_listView = findViewById(R.id.notes_listView);
+        mentor_ListView = findViewById(R.id.mentor_ListView);
 
         updateViews();
         updateAssessmentsList();
         updateNotesList();
+        updateMentorsList();
+        notifyChannel();
+
+
+        Button setAlertCourseButton = findViewById(R.id.setAlertCourseButton);
+        setAlertCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(LOG_INFO, "Set Alert (Click)");
+
+                Calendar calDate = Calendar.getInstance();
+                calDate.add(Calendar.DAY_OF_YEAR, -1);
+                Date alertDateEnd = calDate.getTime();
+                try {
+                    alertDateEnd = formatter.parse(CourseEnd.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                setAlert(alertDateEnd);
+            }
+        });
 
         assessments_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -104,21 +137,39 @@ public class detailed_course_view extends AppCompatActivity {
             }
         });
 
+        mentor_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Mentor clicked " + position);
+                Intent intent = new Intent(getApplicationContext(), detailed_mentor_view.class);
+                int mentorId = db.mentorDao().getMentorList(courseId).get(position).getMentorId();
+                intent.putExtra("courseId", courseId);
+                intent.putExtra("mentorId", mentorId);
+                System.out.println("courseId " + courseId);
+                System.out.println("mentorId " + mentorId);
+                startActivity(intent);
+
+            }
+        });
+
         FloatingActionButton fab_AssessmentAdd = findViewById(R.id.fab_AddAssessment);
         fab_AssessmentAdd.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                List<AssessmentEntity> courseAssessments = db.assessmentDao().getAssessmentList(courseId);
                 Calendar calendar = Calendar.getInstance();
                 AssessmentEntity tempAssessment1 = new AssessmentEntity();
                 tempAssessment1.setCourseIdFk(courseId);
                 tempAssessment1.setAssessmentTitle("Assessment Added");
                 tempAssessment1.setAssessmentStatus("change status");
                 tempAssessment1.setAssessmentType("change type");
-                calendar.add(Calendar.MONTH, 1);
                 tempAssessment1.setAssessmentDueDate(calendar.getTime());
-                db.assessmentDao().insertAssessment(tempAssessment1);
+                calendar.add(Calendar.MONTH, 1);
+                if(courseAssessments.size() <= 4){
+                db.assessmentDao().insertAssessment(tempAssessment1); }
+                else {};
                 updateAssessmentsList();
-
             }
         });
 
@@ -137,10 +188,62 @@ public class detailed_course_view extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton fab_MentorAdd = findViewById(R.id.fab_Mentor);
+        fab_MentorAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MentorEntity tempMentor1 = new MentorEntity();
+                tempMentor1.setCourseIdFk(courseId);
+                tempMentor1.setMentorName("Mentor Added");
+                tempMentor1.setPhoneNumber("change phone number");
+                tempMentor1.setEmailAddress("change email address");
+                db.mentorDao().insertMentor(tempMentor1);
+                updateMentorsList();
+
+            }
+        });
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
+    }
+
+    private void notifyChannel() {
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            CharSequence dgw_channel_name = "DGW Tracker NAME";
+            String dgw_channel_description = "DGW Tracker DESC";
+            int dgw_channel_importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel notifyChannel = new NotificationChannel("dgwChanId", dgw_channel_name,dgw_channel_importance);
+            notifyChannel.setDescription(dgw_channel_description);
+
+            NotificationManager notifyManager = getSystemService(NotificationManager.class);
+            notifyManager.createNotificationChannel(notifyChannel);
+        }
+    }
+
+    private void setAlert(Date calDateProvided) {
+        Calendar calDateNow = Calendar.getInstance();
+        if(calDateProvided.getTime() > calDateNow.getTime().getTime()){
+            Log.d(LOG_INFO, formatter.format(calDateProvided) + " notify date");
+            Intent sendIntent = new Intent(getApplicationContext(), AlertReminder.class);
+            sendIntent.putExtra("my_title", "Important Date");
+            sendIntent.putExtra("my_message", "Course: " + CourseTitle.getText().toString() + " is due\n" + "Date and Time: " + formatter.format(calDateProvided));
+            sendIntent.putExtra("notify_id", NOTIFY_ID);
+            PendingIntent thisPendIntent = PendingIntent.getBroadcast(getApplicationContext(),
+                    NOTIFY_ID,
+                    sendIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alertManage = (AlarmManager) getSystemService(ALARM_SERVICE);
+            alertManage.set(AlarmManager.RTC, calDateProvided.getTime(), thisPendIntent);
+            Toast.makeText(getApplicationContext(), "Alert set for: " + CourseTitle.getText().toString(), Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(getApplicationContext(), formatter.format(calDateProvided) + " is a PAST DATE or TIME", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -183,6 +286,26 @@ public class detailed_course_view extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    private void updateMentorsList() {
+
+        List<MentorEntity> allMentor = new ArrayList<>();
+        try {
+            allMentor = db.mentorDao().getMentorList(courseId);
+        } catch (Exception e) {
+            System.out.println("didn't work");
+        }
+
+        String[] items = new String[allMentor.size()];
+        if(!allMentor.isEmpty()){
+            for(int i = 0; i < allMentor.size(); i++) {
+                items[i] = allMentor.get(i).getMentorName();
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+        mentor_ListView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
 
     private void updateViews() {
         if(selectedCourse != null){
@@ -194,9 +317,6 @@ public class detailed_course_view extends AppCompatActivity {
             CourseEnd.setText(tempEnd);
             CourseTitle.setText(selectedCourse.getCourseTitle());
             CourseStatus.setText(selectedCourse.getCourseStatus());
-            MentorName.setText(selectedCourse.getMentorName());
-            PhoneNumber.setText(selectedCourse.getPhoneNumber());
-            EmailAddress.setText(selectedCourse.getEmailAddress());
         } else {
             selectedCourse = new CourseEntity();
         }

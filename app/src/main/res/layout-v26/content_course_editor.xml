@@ -72,54 +72,6 @@
         android:autofillHints="Enter Course Status"
         tools:ignore="LabelFor"/>
 
-    <EditText
-        android:id="@+id/MentorName"
-        android:layout_width="321dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="20dp"
-        android:hint="Enter Mentor Name"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:gravity="left"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CourseStatus"
-        android:inputType="text"
-        android:autofillHints="Enter Course Mentor Name"
-        tools:ignore="LabelFor"/>
-
-    <EditText
-        android:id="@+id/PhoneNumber"
-        android:layout_width="321dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="20dp"
-        android:hint="Enter Phone Number"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:gravity="left"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MentorName"
-        android:inputType="text"
-        android:autofillHints="Enter Phone Number"
-        tools:ignore="LabelFor,TextFields"/>
-
-    <EditText
-        android:id="@+id/EmailAddress"
-        android:layout_width="321dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="20dp"
-        android:hint="Enter Email Address"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:gravity="left"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber"
-        android:inputType="text"
-        android:autofillHints="Enter Email Address"
-        tools:ignore="LabelFor,TextFields"/>
-
     <Button
         android:id="@+id/saveCourseButton"
         android:layout_width="wrap_content"
@@ -129,7 +81,7 @@
         app:layout_constraintEnd_toStartOf="@+id/deleteCourseButton"
         app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/CourseStatus" />
 
     <Button
         android:id="@+id/deleteCourseButton"
@@ -140,7 +92,7 @@
         android:text="DELETE COURSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/CourseStatus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

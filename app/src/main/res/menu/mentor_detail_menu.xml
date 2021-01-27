@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.bjanash_c196.detailed_note_view">
+    tools:context="com.example.bjanash_c196.detailed_course_view">
     <item
-        android:id="@+id/action_edit_note"
+        android:id="@+id/action_edit_mentor"
         android:orderInCategory="100"
-        android:title="@string/edit_note"
+        android:title="@string/edit_mentor"
         app:showAsAction="never" />
-
 </menu>

@@ -12,7 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.CourseEntity;
-import com.example.bjanash_c196.database.TermEntity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

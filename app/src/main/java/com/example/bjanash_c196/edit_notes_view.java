@@ -11,12 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bjanash_c196.database.AppDatabase;
-import com.example.bjanash_c196.database.CourseEntity;
 import com.example.bjanash_c196.database.NoteEntity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class edit_notes_view extends AppCompatActivity {
     TextView NoteTitle;

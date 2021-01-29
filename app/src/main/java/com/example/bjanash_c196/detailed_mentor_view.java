@@ -13,7 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.MentorEntity;
-import com.example.bjanash_c196.database.NoteEntity;
 
 public class detailed_mentor_view extends AppCompatActivity {
 

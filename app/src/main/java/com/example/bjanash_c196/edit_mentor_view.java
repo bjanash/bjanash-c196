@@ -11,12 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bjanash_c196.database.AppDatabase;
-import com.example.bjanash_c196.database.CourseEntity;
 import com.example.bjanash_c196.database.MentorEntity;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class edit_mentor_view extends AppCompatActivity {
     TextView MentorName;
@@ -39,7 +34,7 @@ public class edit_mentor_view extends AppCompatActivity {
         mentorId = intent.getIntExtra("mentorId", -1);
         courseId = intent.getIntExtra("courseId", -1);
        //System.out.println(termId);
-        selectedMentor = db.mentorDao().getMentor(mentorId,courseId);
+        selectedMentor = db.mentorDao().getMentor(courseId, mentorId);
 
         MentorName = findViewById(R.id.mentorName);
         PhoneNumber = findViewById(R.id.phoneNumber);
@@ -55,7 +50,7 @@ public class edit_mentor_view extends AppCompatActivity {
                 String phoneNumber = PhoneNumber.getText().toString();
                 String emailAddress= EmailAddress.getText().toString();
 
-                MentorEntity updatedMentor = db.mentorDao().getMentor(mentorId, courseId);
+                MentorEntity updatedMentor = db.mentorDao().getMentor(courseId, mentorId);
                 updatedMentor.setMentorName(mentorName);
                 updatedMentor.setPhoneNumber(phoneNumber);
                 updatedMentor.setEmailAddress(emailAddress);
@@ -71,7 +66,7 @@ public class edit_mentor_view extends AppCompatActivity {
         deleteMentorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MentorEntity updatedMentor = db.mentorDao().getMentor(mentorId, courseId);
+                MentorEntity updatedMentor = db.mentorDao().getMentor(courseId, mentorId);
                 db.mentorDao().deleteMentor(updatedMentor);
                 Intent intent = new Intent(getApplicationContext(), detailed_course_view.class);
                 intent.putExtra("courseId", courseId);

@@ -54,15 +54,15 @@
 
     <ListView
         android:id="@+id/assessments_listView"
-        android:layout_width="397dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="408dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -70,13 +70,13 @@
         android:id="@+id/notes_listView"
         android:layout_width="397dp"
         android:layout_height="112dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -132,10 +132,11 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:text="ASSESSMENT LIST"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CourseStatus" />
 
@@ -143,7 +144,7 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="NOTES LIST"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,11 +155,11 @@
         android:id="@+id/fab_NoteAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.919"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notes_listView"
         app:srcCompat="@drawable/ic_baseline_note_add_24" />
@@ -167,11 +168,11 @@
         android:id="@+id/fab_AddAssessment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.919"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assessments_listView"
         app:srcCompat="@drawable/ic_baseline_assessment_24" />
@@ -180,19 +181,21 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:text="MENTOR LIST"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fab_NoteAdd" />
 
     <ListView
         android:id="@+id/mentor_ListView"
-        android:layout_width="399dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="403dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -200,7 +203,7 @@
         android:id="@+id/fab_Mentor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="4dp"
         android:clickable="true"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -214,12 +217,24 @@
         android:layout_width="70dp"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
-        android:text="Set Alert"
+        android:text="Set End Alert"
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.707"
         app:layout_constraintStart_toEndOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/CourseEnd" />
+
+    <Button
+        android:id="@+id/setAlertCourseButton2"
+        android:layout_width="70dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:text="Set Start Alert"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toStartOf="@+id/setAlertCourseButton"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,7 +25,6 @@ import com.example.bjanash_c196.database.AssessmentEntity;
 import com.example.bjanash_c196.database.CourseEntity;
 import com.example.bjanash_c196.database.MentorEntity;
 import com.example.bjanash_c196.database.NoteEntity;
-import com.example.bjanash_c196.database.TermEntity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
@@ -35,8 +33,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.example.bjanash_c196.AlertReminder.LOG_INFO;
 
@@ -105,6 +101,24 @@ public class detailed_course_view extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 setAlert(alertDateEnd);
+            }
+        });
+
+        Button setAlertCourseButton2 = findViewById(R.id.setAlertCourseButton2);
+        setAlertCourseButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(LOG_INFO, "Set Alert (Click)");
+
+                Calendar calDate = Calendar.getInstance();
+                calDate.add(Calendar.DAY_OF_YEAR, -1);
+                Date alertDateStart = calDate.getTime();
+                try {
+                    alertDateStart = formatter.parse(CourseStart.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                setAlert(alertDateStart);
             }
         });
 
@@ -231,7 +245,7 @@ public class detailed_course_view extends AppCompatActivity {
             Log.d(LOG_INFO, formatter.format(calDateProvided) + " notify date");
             Intent sendIntent = new Intent(getApplicationContext(), AlertReminder.class);
             sendIntent.putExtra("my_title", "Important Date");
-            sendIntent.putExtra("my_message", "Course: " + CourseTitle.getText().toString() + " is due\n" + "Date and Time: " + formatter.format(calDateProvided));
+            sendIntent.putExtra("my_message", "Course: " + CourseTitle.getText().toString() + " is starting/ending \n" + "Date and Time: " + formatter.format(calDateProvided));
             sendIntent.putExtra("notify_id", NOTIFY_ID);
             PendingIntent thisPendIntent = PendingIntent.getBroadcast(getApplicationContext(),
                     NOTIFY_ID,

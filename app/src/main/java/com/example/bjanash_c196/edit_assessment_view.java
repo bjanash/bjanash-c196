@@ -2,8 +2,6 @@ package com.example.bjanash_c196;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.bjanash_c196.database.AppDatabase;
 import com.example.bjanash_c196.database.AssessmentEntity;
-import com.example.bjanash_c196.database.CourseEntity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
